@@ -5,7 +5,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1, viewport-fit=cover"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,13 +18,11 @@
 
 :root {
   --navy:#0b2f57;
-  --blue:#164a7b;
   --green:#198754;
   --red:#c62828;
   --orange:#e67e22;
-  --gray:#6c757d;
-  --light:#f4f7fa;
-  --border:#d8e0e7;
+  --purple:#6f42c1;
+  --border:#d7e0e8;
 }
 
 * {
@@ -39,7 +37,7 @@ body {
     "Segoe UI",
     Arial,
     sans-serif;
-  background:#eef2f6;
+  background:#eef3f7;
   color:#1f2933;
 }
 
@@ -51,54 +49,58 @@ body {
 }
 
 header {
-  background:var(--navy);
-  color:white;
-  padding:16px;
-  text-align:center;
-  font-weight:700;
-  font-size:18px;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:15px;
+  font-size:18px;
+  font-weight:700;
 }
 
 main {
   padding:16px;
 }
 
-h1 {
-  color:var(--navy);
-  font-size:25px;
-  margin-bottom:4px;
+.hidden {
+  display:none;
 }
 
-.subtitle {
-  color:#6b7580;
-  margin-bottom:22px;
+h1 {
+  color:var(--navy);
+  margin:0 0 8px;
+  font-size:25px;
+}
+
+.muted {
+  color:#68737e;
+  font-size:13px;
 }
 
 .card {
   border:1px solid var(--border);
   border-radius:14px;
   padding:14px;
-  margin-bottom:14px;
   background:white;
+  margin-bottom:14px;
 }
 
 label {
   display:block;
+  margin:13px 0 6px;
   font-weight:700;
-  margin:12px 0 6px;
 }
 
 select,
 input[type="date"],
 textarea {
   width:100%;
+  border:1px solid #bec9d3;
+  border-radius:10px;
   padding:12px;
   font-size:16px;
-  border:1px solid #bfc8d2;
-  border-radius:10px;
   background:white;
 }
 
@@ -107,7 +109,6 @@ textarea {
 }
 
 button {
-  cursor:pointer;
   font-family:inherit;
 }
 
@@ -118,42 +119,27 @@ button {
   padding:14px;
   background:var(--navy);
   color:white;
-  font-size:17px;
   font-weight:700;
+  font-size:17px;
 }
 
 .secondary {
-  border:1px solid #b8c2cc;
-  background:white;
+  border:1px solid #b9c3cd;
   border-radius:9px;
-  padding:10px;
-}
-
-.dictateButton {
-  width:100%;
-  border:0;
-  border-radius:10px;
-  padding:13px;
-  margin-bottom:8px;
-  background:var(--green);
-  color:white;
-  font-size:16px;
+  background:white;
+  padding:11px;
   font-weight:700;
-}
-
-.dictateButton.listening {
-  background:var(--red);
 }
 
 .homeButton {
   width:100%;
   display:flex;
   align-items:center;
-  gap:14px;
-  background:white;
+  gap:13px;
   border:1px solid var(--border);
   border-radius:14px;
-  padding:16px;
+  background:white;
+  padding:15px;
   margin:10px 0;
   text-align:left;
 }
@@ -161,12 +147,12 @@ button {
 .homeIcon {
   width:44px;
   height:44px;
+  border-radius:10px;
   display:grid;
   place-items:center;
-  border-radius:10px;
   background:var(--navy);
   color:white;
-  font-size:24px;
+  font-size:23px;
 }
 
 .homeButton b {
@@ -175,25 +161,21 @@ button {
 
 .homeButton small {
   display:block;
-  color:#6c757d;
+  color:#69747f;
   margin-top:3px;
 }
 
-.hidden {
-  display:none;
-}
-
-.progressText {
+.progressRow {
   display:flex;
   justify-content:space-between;
   font-size:13px;
-  margin-bottom:6px;
+  margin:8px 0 5px;
 }
 
 .progressTrack {
   height:8px;
-  background:#e6ebef;
-  border-radius:50px;
+  background:#e5ebef;
+  border-radius:99px;
   overflow:hidden;
   margin-bottom:16px;
 }
@@ -206,9 +188,9 @@ button {
 
 .auditItem {
   border:1px solid var(--border);
-  border-radius:12px;
-  margin-bottom:14px;
+  border-radius:13px;
   overflow:hidden;
+  margin-bottom:14px;
 }
 
 .itemHeader {
@@ -218,20 +200,20 @@ button {
 }
 
 .itemCode {
-  color:#68737e;
-  font-size:12px;
   display:block;
+  font-size:12px;
+  color:#68737e;
   margin-bottom:4px;
 }
 
 .requirement {
   padding:13px;
-  border-top:1px solid #e5eaee;
+  border-top:1px solid #e7ecef;
 }
 
 .requirementText {
-  margin-bottom:10px;
   line-height:1.35;
+  margin-bottom:10px;
 }
 
 .statusGrid {
@@ -242,101 +224,176 @@ button {
 
 .status {
   min-height:48px;
-  border:1px solid #c9d1d8;
-  background:white;
+  border:1px solid #c6d0d8;
   border-radius:9px;
+  background:white;
   font-size:13px;
 }
 
 .status.compliant.active {
   background:#e8f7ee;
-  border-color:#198754;
+  border-color:var(--green);
   color:#146c43;
 }
 
 .status.noncompliant.active {
   background:#fdecec;
-  border-color:#c62828;
+  border-color:var(--red);
   color:#a01515;
 }
 
 .status.na.active {
-  background:#edf0f3;
-  border-color:#77838e;
+  background:#eef1f4;
+  border-color:#7c8791;
 }
 
 .status.nr.active {
   background:#fff2e2;
-  border-color:#e67e22;
+  border-color:var(--orange);
   color:#914800;
 }
 
 .finding {
   margin-top:12px;
+  background:#fff5f5;
+  border:1px solid #efb6b6;
+  border-radius:11px;
   padding:11px;
-  border:1px solid #efb5b5;
-  background:#fff4f4;
-  border-radius:10px;
-}
-
-.finding label {
-  font-size:13px;
 }
 
 .required {
   color:var(--red);
 }
 
+.dictateButton {
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  background:var(--green);
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
 .voiceHelp {
+  margin:5px 0 12px;
+  background:#eaf4fb;
+  color:#214f78;
+  border-radius:8px;
+  padding:9px;
   font-size:12px;
-  color:#6c757d;
-  margin:0 0 10px;
+}
+
+.photoButtons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:7px;
+}
+
+.photoButton {
+  display:block;
+  text-align:center;
+  padding:13px 7px;
+  border-radius:10px;
+  color:white;
+  font-weight:700;
+  font-size:14px;
+}
+
+.cameraButton {
+  background:var(--navy);
+}
+
+.libraryButton {
+  background:var(--purple);
+}
+
+.fileInput {
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  overflow:hidden;
 }
 
 .photos {
   display:flex;
   flex-wrap:wrap;
   gap:8px;
-  margin-top:8px;
+  margin-top:10px;
+}
+
+.photoWrap {
+  position:relative;
 }
 
 .photos img {
-  width:80px;
-  height:80px;
+  width:82px;
+  height:82px;
   object-fit:cover;
   border-radius:8px;
-  border:1px solid #ccd4dc;
+  border:1px solid #ccd5dd;
 }
 
-.correctedButtons {
+.removePhoto {
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  border:0;
+  color:white;
+  background:var(--red);
+  font-weight:700;
+}
+
+.correctedGrid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
 }
 
 .correctedButton {
-  padding:11px;
-  border:1px solid #c9d1d8;
+  border:1px solid #c5ced6;
   border-radius:9px;
   background:white;
+  padding:11px;
   font-weight:700;
 }
 
 .correctedButton.yes.active {
   background:#e8f7ee;
-  border-color:#198754;
+  border-color:var(--green);
   color:#146c43;
 }
 
 .correctedButton.no.active {
   background:#fdecec;
-  border-color:#c62828;
+  border-color:var(--red);
   color:#a01515;
+}
+
+.footer {
+  position:sticky;
+  bottom:0;
+  background:white;
+  border-top:1px solid var(--border);
+  padding:10px;
+  display:flex;
+  gap:8px;
+}
+
+.footer button {
+  flex:1;
 }
 
 .summaryGrid {
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
@@ -350,7 +407,7 @@ button {
 .stat strong {
   display:block;
   color:var(--navy);
-  font-size:26px;
+  font-size:25px;
 }
 
 .notice {
@@ -359,25 +416,11 @@ button {
   padding:11px;
   border-radius:10px;
   font-size:13px;
-  margin-top:14px;
-}
-
-.footer {
-  position:sticky;
-  bottom:0;
-  display:flex;
-  gap:8px;
-  padding:10px;
-  background:white;
-  border-top:1px solid var(--border);
-}
-
-.footer button {
-  flex:1;
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -392,7 +435,7 @@ CoreCivic Food Service Audit
 
 <main id="homeView">
 
-  <div style="text-align:center;padding:20px 5px">
+  <div style="text-align:center;padding:22px 4px">
 
     <div style="font-size:46px;color:#0b2f57">
       ✓
@@ -402,8 +445,8 @@ CoreCivic Food Service Audit
       CRT-05 Food Service
     </h1>
 
-    <div class="subtitle">
-      iPhone Prototype
+    <div class="muted">
+      iPhone Field Prototype
     </div>
 
   </div>
@@ -419,10 +462,15 @@ CoreCivic Food Service Audit
     </div>
 
     <div>
-      <b>New Audit</b>
+
+      <b>
+        New Audit
+      </b>
+
       <small>
-        Start a new food service audit
+        Start a food service audit
       </small>
+
     </div>
 
   </button>
@@ -442,8 +490,13 @@ CoreCivic Food Service Audit
     </div>
 
     <div>
-      <b>Resume Audit</b>
+
+      <b>
+        Resume Audit
+      </b>
+
       <small id="resumeText"></small>
+
     </div>
 
   </button>
@@ -462,10 +515,15 @@ CoreCivic Food Service Audit
     </div>
 
     <div>
-      <b>Completed Audits</b>
+
+      <b>
+        Completed Audits
+      </b>
+
       <small>
-        View completed test audits
+        View saved test audits
       </small>
+
     </div>
 
   </button>
@@ -473,8 +531,8 @@ CoreCivic Food Service Audit
 
   <div class="notice">
 
-    This is our field-test prototype.
-    The unfinished audit is saved on this device.
+    This prototype saves the unfinished audit
+    on this iPhone while we test the field workflow.
 
   </div>
 
@@ -489,90 +547,90 @@ CoreCivic Food Service Audit
   class="hidden"
 >
 
-  <h1>
-    New Audit
-  </h1>
+<h1>
+New Audit
+</h1>
 
 
-  <div class="card">
+<div class="card">
 
-    <label>
-      Facility
-    </label>
+<label>
+Facility
+</label>
 
-    <select id="facility">
+<select id="facility">
 
-      <option value="">
-        Select Facility
-      </option>
+<option value="">
+Select Facility
+</option>
 
-      <option>
-        Sample Facility A
-      </option>
+<option>
+Sample Facility A
+</option>
 
-      <option>
-        Sample Facility B
-      </option>
+<option>
+Sample Facility B
+</option>
 
-      <option>
-        Sample Facility C
-      </option>
+<option>
+Sample Facility C
+</option>
 
-    </select>
-
-
-    <label>
-      Auditor
-    </label>
-
-    <select id="auditor">
-
-      <option value="">
-        Select Auditor
-      </option>
-
-      <option>
-        Steven Luttrell
-      </option>
-
-      <option>
-        Auditor 2
-      </option>
-
-      <option>
-        Auditor 3
-      </option>
-
-    </select>
+</select>
 
 
-    <label>
-      Audit Date
-    </label>
+<label>
+Auditor
+</label>
 
-    <input
-      type="date"
-      id="auditDate"
-    >
+<select id="auditor">
 
-  </div>
+<option value="">
+Select Auditor
+</option>
+
+<option>
+Steven Luttrell
+</option>
+
+<option>
+Auditor 2
+</option>
+
+<option>
+Auditor 3
+</option>
+
+</select>
 
 
-  <button
-    class="primary"
-    onclick="startAudit()"
-  >
-    Start Audit
-  </button>
+<label>
+Audit Date
+</label>
+
+<input
+type="date"
+id="auditDate"
+>
+
+</div>
 
 
-  <button
-    class="secondary"
-    style="width:100%;margin-top:8px"
-    onclick="showHome()"
-  >
-    Cancel
-  </button>
+<button
+class="primary"
+onclick="startAudit()"
+>
+Start Audit
+</button>
+
+
+<button
+class="secondary"
+style="width:100%;margin-top:8px"
+onclick="showHome()"
+>
+Cancel
+</button>
 
 </main>
 
@@ -581,62 +639,65 @@ CoreCivic Food Service Audit
 <!-- AUDIT -->
 
 <section
-  id="auditView"
-  class="hidden"
+id="auditView"
+class="hidden"
 >
 
-<main>
+<main style="padding-bottom:0">
 
-  <b>
-    Audit in Progress
-  </b>
+<b>
+Audit in Progress
+</b>
 
-  <div
-    id="auditFacility"
-    class="subtitle"
-  ></div>
-
-
-  <div class="progressText">
-
-    <span id="progressCount"></span>
-
-    <span id="progressPercent"></span>
-
-  </div>
+<div
+id="auditFacility"
+class="muted"
+></div>
 
 
-  <div class="progressTrack">
+<div class="progressRow">
 
-    <div
-      id="progressBar"
-      class="progressBar"
-    ></div>
+<span id="progressCount"></span>
 
-  </div>
+<span id="progressPercent"></span>
+
+</div>
 
 
-  <div id="checklist"></div>
+<div class="progressTrack">
+
+<div
+id="progressBar"
+class="progressBar"
+></div>
+
+</div>
 
 </main>
 
 
+<div
+id="checklist"
+style="padding:0 16px 16px"
+></div>
+
+
 <div class="footer">
 
-  <button
-    class="secondary"
-    onclick="showHome()"
-  >
-    Home
-  </button>
+<button
+class="secondary"
+onclick="showHome()"
+>
+Home
+</button>
 
 
-  <button
-    class="primary"
-    onclick="finalReview()"
-  >
-    Final Review
-  </button>
+<button
+class="primary"
+onclick="finalReview()"
+>
+Final Review
+</button>
 
 </div>
 
@@ -647,103 +708,104 @@ CoreCivic Food Service Audit
 <!-- FINAL REVIEW -->
 
 <main
-  id="summaryView"
-  class="hidden"
+id="summaryView"
+class="hidden"
 >
 
 <h1>
-  Final Review
+Final Review
 </h1>
 
 
 <div class="card">
 
-  <b id="summaryFacility"></b>
+<b id="summaryFacility"></b>
 
-  <div
-    id="summaryDate"
-    class="subtitle"
-  ></div>
+<div
+id="summaryDate"
+class="muted"
+></div>
 
 
-  <div
-    style="
-      font-size:38px;
-      color:#198754;
-      font-weight:800;
-    "
-  >
+<div
+style="
+font-size:38px;
+font-weight:800;
+color:#198754;
+margin-top:10px;
+"
+>
 
-    <span id="score"></span>%
+<span id="score"></span>%
 
-  </div>
+</div>
 
 </div>
 
 
 <div class="summaryGrid">
 
-  <div class="stat">
+<div class="stat">
 
-    <strong id="compliantCount">
-      0
-    </strong>
+<strong id="compliantCount">
+0
+</strong>
 
-    Compliant
+Compliant
 
-  </div>
-
-
-  <div class="stat">
-
-    <strong id="ncCount">
-      0
-    </strong>
-
-    Non-Compliant
-
-  </div>
+</div>
 
 
-  <div class="stat">
+<div class="stat">
 
-    <strong id="naCount">
-      0
-    </strong>
+<strong id="ncCount">
+0
+</strong>
 
-    N/A
+Non-Compliant
 
-  </div>
+</div>
 
 
-  <div class="stat">
+<div class="stat">
 
-    <strong id="nrCount">
-      0
-    </strong>
+<strong id="naCount">
+0
+</strong>
 
-    Not Reviewed
+N/A
 
-  </div>
+</div>
+
+
+<div class="stat">
+
+<strong id="nrCount">
+0
+</strong>
+
+Not Reviewed
+
+</div>
 
 </div>
 
 
 <button
-  class="primary"
-  style="margin-top:15px"
-  onclick="completeAudit()"
+class="primary"
+style="margin-top:14px"
+onclick="completeAudit()"
 >
-  Complete Audit
+Complete Audit
 </button>
 
 
 <button
-  class="secondary"
-  style="width:100%;margin-top:8px"
-  onclick="showAudit()"
+class="secondary"
+style="width:100%;margin-top:8px"
+onclick="showAudit()"
 >
-  Back to Audit
+Back to Audit
 </button>
 
 </main>
@@ -753,12 +815,12 @@ CoreCivic Food Service Audit
 <!-- COMPLETED -->
 
 <main
-  id="completedView"
-  class="hidden"
+id="completedView"
+class="hidden"
 >
 
 <h1>
-  Completed Audits
+Completed Audits
 </h1>
 
 
@@ -766,11 +828,11 @@ CoreCivic Food Service Audit
 
 
 <button
-  class="secondary"
-  style="width:100%"
-  onclick="showHome()"
+class="secondary"
+style="width:100%"
+onclick="showHome()"
 >
-  Home
+Home
 </button>
 
 </main>
@@ -782,130 +844,135 @@ CoreCivic Food Service Audit
 <script>
 
 
-/* --------------------------------
-   SAMPLE AUDIT QUESTIONS
--------------------------------- */
+/* SAMPLE QUESTIONS */
 
 const questions = [
 
 {
-  code:"CRT-05-G-02",
 
-  title:
-  "Dry Storage Area following Food Safety Guidelines",
+code:"CRT-05-G-02",
 
-  checks:[
+title:
+"Dry Storage Area following Food Safety Guidelines",
 
-    "Food is stored at least 6 inches off the floor.",
+checks:[
 
-    "Food is stored at least 18 inches below ceiling sprinkler heads.",
+"Food is stored at least 6 inches off the floor.",
 
-    "Partially used products are properly sealed.",
+"Food is stored at least 18 inches below ceiling sprinkler heads.",
 
-    "Dry storage flooring is clean."
+"Partially used products are properly sealed.",
 
-  ]
+"Dry storage flooring is clean."
+
+]
+
 },
 
 
 {
-  code:"CRT-05-H-02",
 
-  title:
-  "Cooler Storage Areas following Food Safety Guidelines",
+code:"CRT-05-H-02",
 
-  checks:[
+title:
+"Cooler Storage Areas following Food Safety Guidelines",
 
-    "Raw or hazardous foods are not stored above ready-to-eat foods.",
+checks:[
 
-    "Food is stored at least 6 inches off the floor.",
+"Raw or hazardous foods are not stored above ready-to-eat foods.",
 
-    "Leftovers are labeled, dated, covered and stored in clean containers.",
+"Food is stored at least 6 inches off the floor.",
 
-    "Cooler is clean."
+"Leftovers are labeled, dated, covered and stored in clean containers.",
 
-  ]
+"Cooler is clean."
+
+]
+
 },
 
 
 {
-  code:"CRT-05-L-05",
 
-  title:
-  "Hand Washing is Practiced Effectively",
+code:"CRT-05-L-05",
 
-  checks:[
+title:
+"Hand Washing is Practiced Effectively",
 
-    "Hand washing signs are posted.",
+checks:[
 
-    "Observed hand washing lasts approximately 20 seconds."
+"Hand washing signs are posted.",
 
-  ]
+"Observed hand washing lasts approximately 20 seconds."
+
+]
+
 }
 
 ];
 
 
 
-/* --------------------------------
-   LOAD ACTIVE AUDIT
--------------------------------- */
+/* ACTIVE AUDIT */
 
 let audit =
+
 JSON.parse(
-  localStorage.getItem(
-    "foodAuditActive"
-  )
-) || null;
+
+localStorage.getItem(
+"foodAuditActive"
+)
+
+)
+
+|| null;
 
 
-
-/* --------------------------------
-   SAVE
--------------------------------- */
 
 function save() {
 
-  localStorage.setItem(
+localStorage.setItem(
 
-    "foodAuditActive",
+"foodAuditActive",
 
-    JSON.stringify(audit)
+JSON.stringify(
+audit
+)
 
-  );
+);
 
 }
 
 
 
-/* --------------------------------
-   SCREEN HANDLING
--------------------------------- */
+/* SCREEN CONTROL */
 
 function hideAll() {
 
-  [
+[
 
-    "homeView",
+"homeView",
 
-    "newView",
+"newView",
 
-    "auditView",
+"auditView",
 
-    "summaryView",
+"summaryView",
 
-    "completedView"
+"completedView"
 
-  ].forEach(
+]
 
-    id =>
+.forEach(
 
-    document
-    .getElementById(id)
-    .classList
-    .add("hidden")
+id =>
 
-  );
+document
+.getElementById(id)
+.classList
+.add("hidden")
+
+);
 
 }
 
@@ -913,45 +980,49 @@ function hideAll() {
 
 function showHome() {
 
-  hideAll();
+hideAll();
 
 
-  document
-  .getElementById("homeView")
-  .classList
-  .remove("hidden");
+document
+.getElementById(
+"homeView"
+)
+.classList
+.remove("hidden");
 
 
-  const resume =
-    document
-    .getElementById(
-      "resumeButton"
-    );
+const resume =
+
+document
+.getElementById(
+"resumeButton"
+);
 
 
-  if(audit) {
+if(audit) {
 
-    resume
-    .classList
-    .remove("hidden");
+resume
+.classList
+.remove("hidden");
 
 
-    document
-    .getElementById(
-      "resumeText"
-    )
-    .innerText =
-      audit.facility;
+document
+.getElementById(
+"resumeText"
+)
+.innerText =
 
-  }
+audit.facility;
 
-  else {
+}
 
-    resume
-    .classList
-    .add("hidden");
+else {
 
-  }
+resume
+.classList
+.add("hidden");
+
+}
 
 }
 
@@ -959,1579 +1030,1499 @@ function showHome() {
 
 function showNewAudit() {
 
-  hideAll();
+hideAll();
 
 
-  document
-  .getElementById(
-    "newView"
-  )
-  .classList
-  .remove("hidden");
+document
+.getElementById(
+"newView"
+)
+.classList
+.remove("hidden");
 
 }
 
 
 
-/* --------------------------------
-   START AUDIT
--------------------------------- */
+/* START */
 
 function startAudit() {
 
-  const facility =
-    document
-    .getElementById(
-      "facility"
-    )
-    .value;
+const facility =
+
+document
+.getElementById(
+"facility"
+)
+.value;
 
 
-  const auditor =
-    document
-    .getElementById(
-      "auditor"
-    )
-    .value;
+const auditor =
+
+document
+.getElementById(
+"auditor"
+)
+.value;
 
 
-  const date =
-    document
-    .getElementById(
-      "auditDate"
-    )
-    .value;
+const date =
+
+document
+.getElementById(
+"auditDate"
+)
+.value;
 
 
-  if(
-    !facility ||
-    !auditor ||
-    !date
-  ) {
+if(
+!facility
+||
+!auditor
+||
+!date
+) {
 
-    alert(
-      "Please select Facility, Auditor and Audit Date."
-    );
+alert(
 
-    return;
+"Please select Facility, Auditor and Audit Date."
 
-  }
+);
 
+return;
 
-  audit = {
-
-    facility,
-
-    auditor,
-
-    date,
-
-    answers:{},
-
-    comments:{},
-
-    corrective:{},
-
-    corrected:{},
-
-    photos:{}
-
-  };
+}
 
 
-  save();
+audit = {
 
-  showAudit();
+facility,
+
+auditor,
+
+date,
+
+answers:{},
+
+comments:{},
+
+corrective:{},
+
+corrected:{},
+
+photos:{}
+
+};
+
+
+save();
+
+showAudit();
 
 }
 
 
 
-/* --------------------------------
-   SHOW AUDIT
--------------------------------- */
+/* SHOW AUDIT */
 
 function showAudit() {
 
-  if(!audit) {
+if(!audit) {
 
-    showHome();
+showHome();
 
-    return;
+return;
 
-  }
-
-
-  hideAll();
+}
 
 
-  document
-  .getElementById(
-    "auditView"
-  )
-  .classList
-  .remove("hidden");
+hideAll();
 
 
-  document
-  .getElementById(
-    "auditFacility"
-  )
-  .innerText =
-    audit.facility;
+document
+.getElementById(
+"auditView"
+)
+.classList
+.remove("hidden");
 
 
-  renderQuestions();
+document
+.getElementById(
+"auditFacility"
+)
+.innerText =
+
+audit.facility;
+
+
+renderQuestions();
 
 }
 
 
 
-/* --------------------------------
-   SET STATUS
--------------------------------- */
+/* STATUS */
 
 function setStatus(
-  key,
-  status
+key,
+status
 ) {
 
-  audit.answers[key] =
-    status;
+audit.answers[key] =
+status;
 
 
-  if(
-    status !==
-    "noncompliant"
-  ) {
+if(
+status !==
+"noncompliant"
+) {
 
-    delete audit.comments[key];
+delete audit.comments[key];
 
-    delete audit.corrective[key];
+delete audit.corrective[key];
 
-    delete audit.corrected[key];
+delete audit.corrected[key];
 
-    delete audit.photos[key];
+delete audit.photos[key];
 
-  }
+}
 
 
-  save();
+save();
 
-  renderQuestions(key);
+renderQuestions(key);
 
 }
 
 
 
-/* --------------------------------
-   COMMENT
--------------------------------- */
+/* TEXT */
 
 function setComment(
-  key,
-  value
+key,
+value
 ) {
 
-  audit.comments[key] =
-    value;
+audit.comments[key] =
+value;
 
-  save();
+save();
 
 }
 
 
-
-/* --------------------------------
-   CORRECTIVE ACTION
--------------------------------- */
 
 function setCorrective(
-  key,
-  value
+key,
+value
 ) {
 
-  audit.corrective[key] =
-    value;
+audit.corrective[key] =
+value;
 
-  save();
+save();
 
 }
 
 
-
-/* --------------------------------
-   CORRECTED ON SITE
--------------------------------- */
 
 function setCorrected(
-  key,
-  value
+key,
+value
 ) {
 
-  audit.corrected[key] =
-    value;
+audit.corrected[key] =
+value;
 
-  save();
+save();
 
-  renderQuestions(key);
+renderQuestions(key);
 
 }
 
 
 
-/* --------------------------------
-   PHOTOS
--------------------------------- */
+/* IPHONE DICTATION */
+
+function dictate(
+key,
+field
+) {
+
+let id;
+
+
+if(
+field ===
+"comment"
+) {
+
+id =
+"comment-" +
+key;
+
+}
+
+else {
+
+id =
+"corrective-" +
+key;
+
+}
+
+
+const box =
+
+document
+.getElementById(id);
+
+
+box.focus();
+
+
+box.scrollIntoView({
+
+behavior:"smooth",
+
+block:"center"
+
+});
+
+
+setTimeout(
+
+function() {
+
+alert(
+
+"The iPhone keyboard is now open.\n\nTap the microphone button on the iPhone keyboard and begin speaking."
+
+);
+
+},
+
+250
+
+);
+
+}
+
+
+
+/* PHOTOS */
 
 function addPhotos(
-  key,
-  input
+key,
+input
 ) {
 
-  const files =
-    Array.from(
-      input.files
-    );
+const files =
+
+Array.from(
+input.files || []
+);
 
 
-  audit.photos[key] =
-    audit.photos[key]
-    || [];
+if(
+files.length === 0
+) {
+
+return;
+
+}
 
 
-  files.forEach(
-    file => {
+audit.photos[key] =
 
-      const reader =
-        new FileReader();
+audit.photos[key]
 
-
-      reader.onload =
-      function() {
-
-        audit
-        .photos[key]
-        .push(
-          reader.result
-        );
+|| [];
 
 
-        save();
+files.forEach(
 
-        renderQuestions(key);
-
-      };
+file => {
 
 
-      reader
-      .readAsDataURL(
-        file
-      );
+const reader =
 
-    }
-  );
+new FileReader();
+
+
+reader.onload =
+
+function() {
+
+
+audit
+.photos[key]
+.push(
+reader.result
+);
+
+
+save();
+
+renderQuestions(key);
+
+};
+
+
+reader.readAsDataURL(
+file
+);
+
+
+}
+
+);
 
 }
 
 
 
-/* --------------------------------
-   DICTATION
--------------------------------- */
-
-let activeRecognition = null;
-
-
-function startDictation(
-  key,
-  field
+function removePhoto(
+key,
+index
 ) {
 
-  const SpeechRecognition =
+audit
+.photos[key]
+.splice(
+index,
+1
+);
 
-    window.SpeechRecognition
 
-    ||
+save();
 
-    window.webkitSpeechRecognition;
-
-
-  if(
-    !SpeechRecognition
-  ) {
-
-    alert(
-
-      "Direct speech recognition is not available in this browser. " +
-
-      "Tap inside the comment box and use the microphone on the iPhone keyboard instead."
-
-    );
-
-    return;
-
-  }
-
-
-  if(activeRecognition) {
-
-    try {
-
-      activeRecognition.stop();
-
-    }
-    catch(e) {}
-
-  }
-
-
-  const recognition =
-    new SpeechRecognition();
-
-
-  activeRecognition =
-    recognition;
-
-
-  recognition.lang =
-    "en-US";
-
-
-  recognition.continuous =
-    false;
-
-
-  recognition.interimResults =
-    false;
-
-
-  let textareaId;
-
-
-  if(
-    field ===
-    "comment"
-  ) {
-
-    textareaId =
-      "comment-" +
-      key;
-
-  }
-
-  else {
-
-    textareaId =
-      "corrective-" +
-      key;
-
-  }
-
-
-  const box =
-    document
-    .getElementById(
-      textareaId
-    );
-
-
-  const button =
-    document
-    .getElementById(
-      "dictate-" +
-      field +
-      "-" +
-      key
-    );
-
-
-  recognition.onstart =
-  function() {
-
-    button
-    .classList
-    .add(
-      "listening"
-    );
-
-
-    button.innerText =
-      "🔴 Listening...";
-
-
-    box.placeholder =
-      "Listening... speak now.";
-
-  };
-
-
-  recognition.onresult =
-  function(event) {
-
-    const spoken =
-      event
-      .results[0][0]
-      .transcript;
-
-
-    const existing =
-      box
-      .value
-      .trim();
-
-
-    box.value =
-
-      existing
-
-      ? existing +
-        " " +
-        spoken
-
-      : spoken;
-
-
-    if(
-      field ===
-      "comment"
-    ) {
-
-      setComment(
-        key,
-        box.value
-      );
-
-    }
-
-    else {
-
-      setCorrective(
-        key,
-        box.value
-      );
-
-    }
-
-  };
-
-
-  recognition.onerror =
-  function(event) {
-
-    console.log(
-      event.error
-    );
-
-
-    alert(
-
-      "Dictation could not start. " +
-
-      "Check microphone permission. " +
-
-      "You can also use the microphone on the iPhone keyboard."
-
-    );
-
-  };
-
-
-  recognition.onend =
-  function() {
-
-    button
-    .classList
-    .remove(
-      "listening"
-    );
-
-
-    if(
-      field ===
-      "comment"
-    ) {
-
-      button.innerText =
-        "🎤 Dictate Comment";
-
-      box.placeholder =
-        "Type comment or tap Dictate Comment above...";
-
-    }
-
-    else {
-
-      button.innerText =
-        "🎤 Dictate Corrective Action";
-
-      box.placeholder =
-        "Optional corrective action...";
-
-    }
-
-
-    activeRecognition =
-      null;
-
-  };
-
-
-  try {
-
-    recognition.start();
-
-  }
-
-  catch(error) {
-
-    alert(
-
-      "Dictation could not start. " +
-
-      "Try again or use the iPhone keyboard microphone."
-
-    );
-
-  }
+renderQuestions(key);
 
 }
 
 
 
-/* --------------------------------
-   STATUS BUTTON
--------------------------------- */
+/* STATUS BUTTON */
 
 function statusButton(
-  key,
-  value,
-  label,
-  current
+key,
+value,
+label,
+current
 ) {
 
-  return `
+return `
 
-  <button
+<button
 
-    class="
-      status
-      ${value}
-      ${
-        current === value
-        ? "active"
-        : ""
-      }
-    "
+class="
+status
+${value}
+${
+current === value
+? "active"
+: ""
+}
+"
 
-    onclick="
-      setStatus(
-        '${key}',
-        '${value}'
-      )
-    "
+onclick="
+setStatus(
+'${key}',
+'${value}'
+)
+"
 
-  >
+>
 
-    ${label}
+${label}
 
-  </button>
+</button>
 
-  `;
+`;
 
 }
 
 
 
-/* --------------------------------
-   RENDER QUESTIONS
--------------------------------- */
+/* RENDER */
 
 function renderQuestions(
-  anchor
+anchor
 ) {
 
-  let html = "";
+let html = "";
 
-  let total = 0;
+let total = 0;
 
 
-  questions
-  .forEach(
-    question => {
+questions
+.forEach(
 
+question => {
 
-      html += `
 
-      <div
-        class="auditItem"
-      >
+html += `
 
-        <div
-          class="itemHeader"
-        >
+<div
+class="auditItem"
+>
 
-          <span
-            class="itemCode"
-          >
+<div
+class="itemHeader"
+>
 
-            ${question.code}
+<span
+class="itemCode"
+>
 
-          </span>
+${question.code}
 
-          ${question.title}
+</span>
 
-        </div>
+${question.title}
 
-      `;
+</div>
 
+`;
 
-      question
-      .checks
-      .forEach(
-        (text,index) => {
 
+question
+.checks
+.forEach(
 
-          total++;
+(text,index) => {
 
 
-          const key =
+total++;
 
-            question.code
 
-            +
+const key =
 
-            "-"
+question.code
 
-            +
++
 
-            index;
+"-"
 
++
 
-          const current =
+index;
 
-            audit
-            .answers[key]
 
-            || "";
+const current =
 
+audit.answers[key]
 
-          html += `
+|| "";
 
-          <div
-            class="requirement"
-            id="${key}"
-          >
 
-            <div
-              class="requirementText"
-            >
+html += `
 
-              ${text}
+<div
+class="requirement"
+id="${key}"
+>
 
-            </div>
+<div
+class="requirementText"
+>
 
+${text}
 
-            <div
-              class="statusGrid"
-            >
+</div>
 
-              ${
-                statusButton(
-                  key,
-                  "compliant",
-                  "✓ Compliant",
-                  current
-                )
-              }
 
+<div
+class="statusGrid"
+>
 
-              ${
-                statusButton(
-                  key,
-                  "noncompliant",
-                  "✕ Non-Compliant",
-                  current
-                )
-              }
+${
 
+statusButton(
 
-              ${
-                statusButton(
-                  key,
-                  "na",
-                  "N/A",
-                  current
-                )
-              }
+key,
 
+"compliant",
 
-              ${
-                statusButton(
-                  key,
-                  "nr",
-                  "Not Reviewed",
-                  current
-                )
-              }
+"✓ Compliant",
 
-            </div>
+current
 
-          `;
+)
 
+}
 
 
-          if(
-            current ===
-            "noncompliant"
-          ) {
+${
 
+statusButton(
 
-            const photos =
+key,
 
-              audit.photos[key]
+"noncompliant",
 
-              || [];
+"✕ Non-Compliant",
 
+current
 
-            const corrected =
+)
 
-              audit.corrected[key]
+}
 
-              || "";
 
+${
 
-            html += `
+statusButton(
 
-            <div
-              class="finding"
-            >
+key,
 
+"na",
 
-              <label>
+"N/A",
 
-                Finding Comment
+current
 
-                <span
-                  class="required"
-                >
-                  Required
-                </span>
+)
 
-              </label>
+}
 
 
-              <button
+${
 
-                id="
-                  dictate-comment-${key}
-                "
+statusButton(
 
-                type="button"
+key,
 
-                class="
-                  dictateButton
-                "
+"nr",
 
-                onclick="
-                  startDictation(
-                    '${key}',
-                    'comment'
-                  )
-                "
+"Not Reviewed",
 
-              >
+current
 
-                🎤 Dictate Comment
+)
 
-              </button>
+}
 
+</div>
 
-              <textarea
+`;
 
-                id="
-                  comment-${key}
-                "
 
-                rows="3"
+if(
+current ===
+"noncompliant"
+) {
 
-                placeholder="
-                  Type comment or tap Dictate Comment above...
-                "
 
-                oninput="
-                  setComment(
-                    '${key}',
-                    this.value
-                  )
-                "
+const photos =
 
-              >${audit.comments[key] || ""}</textarea>
+audit.photos[key]
 
+|| [];
 
-              <div
-                class="voiceHelp"
-              >
 
-                Speak normally.
-                The dictated words will
-                appear in the box above.
+const corrected =
 
-              </div>
+audit.corrected[key]
 
+|| "";
 
 
-              <label>
+html += `
 
-                Photos
+<div
+class="finding"
+>
 
-                <span
-                  style="
-                    font-weight:400;
-                    color:#6c757d;
-                  "
-                >
 
-                  Optional —
-                  multiple allowed
+<label>
 
-                </span>
+Finding Comment
 
-              </label>
+<span
+class="required"
+>
+Required
+</span>
 
+</label>
 
-              <input
 
-                type="file"
+<button
 
-                accept="image/*"
+type="button"
 
-                capture="environment"
+class="dictateButton"
 
-                multiple
+onclick="
+dictate(
+'${key}',
+'comment'
+)
+"
 
-                onchange="
-                  addPhotos(
-                    '${key}',
-                    this
-                  )
-                "
+>
 
-              >
+🎤 Dictate Comment
 
+</button>
 
-              <div
-                class="photos"
-              >
 
-                ${
-                  photos
-                  .map(
-                    photo =>
-                    `<img src="${photo}">`
-                  )
-                  .join("")
-                }
+<textarea
 
-              </div>
+id="
+comment-${key}
+"
 
+rows="3"
 
+placeholder="
+Type comment here...
+"
 
-              <label>
+oninput="
+setComment(
+'${key}',
+this.value
+)
+"
 
-                Corrective Action
+>${audit.comments[key] || ""}</textarea>
 
-                <span
-                  style="
-                    font-weight:400;
-                    color:#6c757d;
-                  "
-                >
 
-                  Optional
+<div
+class="voiceHelp"
+>
 
-                </span>
+Tap
+<b>Dictate Comment</b>.
 
-              </label>
+When the iPhone keyboard appears,
+tap the microphone on the keyboard
+and begin speaking.
 
+</div>
 
-              <button
 
-                id="
-                  dictate-corrective-${key}
-                "
 
-                type="button"
+<label>
 
-                class="
-                  dictateButton
-                "
+Photos
 
-                onclick="
-                  startDictation(
-                    '${key}',
-                    'corrective'
-                  )
-                "
+</label>
 
-              >
 
-                🎤 Dictate Corrective Action
+<div
+class="photoButtons"
+>
 
-              </button>
 
+<label
+for="
+camera-${key}
+"
+class="
+photoButton
+cameraButton
+"
+>
 
-              <textarea
+📷 Take Photo
 
-                id="
-                  corrective-${key}
-                "
+</label>
 
-                rows="2"
 
-                placeholder="
-                  Optional corrective action...
-                "
+<input
 
-                oninput="
-                  setCorrective(
-                    '${key}',
-                    this.value
-                  )
-                "
+id="
+camera-${key}
+"
 
-              >${audit.corrective[key] || ""}</textarea>
+class="fileInput"
 
+type="file"
 
+accept="image/*"
 
-              <label>
+capture="environment"
 
-                Corrected On Site?
+onchange="
+addPhotos(
+'${key}',
+this
+)
+"
 
-              </label>
+>
 
 
-              <div
-                class="
-                  correctedButtons
-                "
-              >
 
+<label
+for="
+library-${key}
+"
+class="
+photoButton
+libraryButton
+"
+>
 
-                <button
+🖼 Choose Photo
 
-                  class="
-                    correctedButton
-                    yes
-                    ${
-                      corrected === "yes"
-                      ? "active"
-                      : ""
-                    }
-                  "
+</label>
 
-                  onclick="
-                    setCorrected(
-                      '${key}',
-                      'yes'
-                    )
-                  "
 
-                >
+<input
 
-                  ✓ Yes
+id="
+library-${key}
+"
 
-                </button>
+class="fileInput"
 
+type="file"
 
+accept="image/*"
 
-                <button
+multiple
 
-                  class="
-                    correctedButton
-                    no
-                    ${
-                      corrected === "no"
-                      ? "active"
-                      : ""
-                    }
-                  "
+onchange="
+addPhotos(
+'${key}',
+this
+)
+"
 
-                  onclick="
-                    setCorrected(
-                      '${key}',
-                      'no'
-                    )
-                  "
+>
 
-                >
 
-                  ✕ No
+</div>
 
-                </button>
 
 
-              </div>
+<div
+class="photos"
+>
 
 
-            </div>
+${
 
-            `;
+photos
 
-          }
+.map(
 
+(photo,index) =>
 
-          html +=
-            "</div>";
+`
 
-        }
-      );
+<div
+class="photoWrap"
+>
 
+<img
+src="${photo}"
+>
 
-      html +=
-        "</div>";
+<button
 
-    }
-  );
+class="removePhoto"
 
+onclick="
+removePhoto(
+'${key}',
+${index}
+)
+"
 
+>
 
-  document
-  .getElementById(
-    "checklist"
-  )
-  .innerHTML =
-    html;
+×
 
+</button>
 
+</div>
 
-  const answered =
+`
 
-    Object.keys(
-      audit.answers
-    )
-    .length;
+)
 
+.join("")
 
+}
 
-  const percent =
 
-    Math.round(
+</div>
 
-      answered
 
-      /
 
-      total
+<label>
 
-      *
+Corrective Action
 
-      100
+<span
+class="muted"
+>
 
-    );
+Optional
 
+</span>
 
+</label>
 
-  document
-  .getElementById(
-    "progressCount"
-  )
-  .innerText =
 
-    answered
+<button
 
-    +
+type="button"
 
-    " of "
+class="dictateButton"
 
-    +
+onclick="
+dictate(
+'${key}',
+'corrective'
+)
+"
 
-    total
+>
 
-    +
+🎤 Dictate Corrective Action
 
-    " reviewed";
+</button>
 
 
+<textarea
 
-  document
-  .getElementById(
-    "progressPercent"
-  )
-  .innerText =
+id="
+corrective-${key}
+"
 
-    percent
+rows="2"
 
-    +
+placeholder="
+Optional corrective action...
+"
 
-    "%";
+oninput="
+setCorrective(
+'${key}',
+this.value
+)
+"
 
+>${audit.corrective[key] || ""}</textarea>
 
 
-  document
-  .getElementById(
-    "progressBar"
-  )
-  .style
-  .width =
 
-    percent
+<label>
 
-    +
+Corrected On Site?
 
-    "%";
+</label>
 
 
+<div
+class="correctedGrid"
+>
 
-  if(anchor) {
 
-    setTimeout(
-      () => {
+<button
 
-        document
-        .getElementById(
-          anchor
-        )
-        ?.scrollIntoView(
-          {
-            block:"center"
-          }
-        );
+class="
+correctedButton
+yes
+${
+corrected ===
+"yes"
+?
+"active"
+:
+""
+}
+"
 
-      },
+onclick="
+setCorrected(
+'${key}',
+'yes'
+)
+"
 
-      50
-    );
+>
 
-  }
+✓ Yes
+
+</button>
+
+
+
+<button
+
+class="
+correctedButton
+no
+${
+corrected ===
+"no"
+?
+"active"
+:
+""
+}
+"
+
+onclick="
+setCorrected(
+'${key}',
+'no'
+)
+"
+
+>
+
+✕ No
+
+</button>
+
+
+</div>
+
+
+</div>
+
+`;
+
+}
+
+
+html +=
+
+"</div>";
+
+}
+
+);
+
+
+html +=
+
+"</div>";
+
+}
+
+);
+
+
+
+document
+.getElementById(
+"checklist"
+)
+.innerHTML =
+
+html;
+
+
+
+const answered =
+
+Object.keys(
+audit.answers
+)
+.length;
+
+
+
+const percent =
+
+Math.round(
+
+answered
+
+/
+
+total
+
+*
+
+100
+
+);
+
+
+
+document
+.getElementById(
+"progressCount"
+)
+.innerText =
+
+answered
+
++
+
+" of "
+
++
+
+total
+
++
+
+" reviewed";
+
+
+
+document
+.getElementById(
+"progressPercent"
+)
+.innerText =
+
+percent
+
++
+
+"%";
+
+
+
+document
+.getElementById(
+"progressBar"
+)
+.style
+.width =
+
+percent
+
++
+
+"%";
+
+
+
+if(anchor) {
+
+setTimeout(
+
+function() {
+
+document
+.getElementById(
+anchor
+)
+?.scrollIntoView({
+
+block:"center"
+
+});
+
+},
+
+50
+
+);
+
+}
 
 }
 
 
 
-/* --------------------------------
-   FINAL REVIEW
--------------------------------- */
+/* FINAL REVIEW */
 
 function finalReview() {
 
-  const total =
+const total =
 
-    questions
-    .reduce(
+questions
+.reduce(
 
-      (sum,q) =>
+(sum,q) =>
 
-      sum
+sum
 
-      +
++
 
-      q.checks.length,
+q.checks.length,
 
-      0
+0
 
-    );
+);
 
 
-  const answered =
+const answered =
 
-    Object.keys(
-      audit.answers
-    )
-    .length;
+Object.keys(
+audit.answers
+)
+.length;
 
 
-  if(
-    answered <
-    total
-  ) {
+if(
+answered <
+total
+) {
 
-    alert(
+alert(
 
-      (total - answered)
+(total - answered)
 
-      +
++
 
-      " requirement(s) still need an answer."
+" requirement(s) still need an answer."
 
-    );
+);
 
-    return;
+return;
 
-  }
+}
 
 
+for(
+const key
+in audit.answers
+) {
 
-  for(
-    const key
-    in
-    audit.answers
-  ) {
 
+if(
 
-    if(
+audit.answers[key]
+===
+"noncompliant"
 
-      audit.answers[key]
-      ===
-      "noncompliant"
+&&
 
-      &&
+!audit
+.comments[key]
+?.trim()
 
-      !audit
-      .comments[key]
-      ?.trim()
+) {
 
-    ) {
+alert(
 
-      alert(
+"Every Non-Compliant finding requires a comment."
 
-        "Every Non-Compliant finding requires a comment."
+);
 
-      );
+return;
 
-      return;
+}
 
-    }
+}
 
-  }
 
+hideAll();
 
 
-  hideAll();
+document
+.getElementById(
+"summaryView"
+)
+.classList
+.remove("hidden");
 
 
-  document
-  .getElementById(
-    "summaryView"
-  )
-  .classList
-  .remove(
-    "hidden"
-  );
+document
+.getElementById(
+"summaryFacility"
+)
+.innerText =
 
+audit.facility;
 
-  document
-  .getElementById(
-    "summaryFacility"
-  )
-  .innerText =
 
-    audit.facility;
+document
+.getElementById(
+"summaryDate"
+)
+.innerText =
 
+audit.date;
 
-  document
-  .getElementById(
-    "summaryDate"
-  )
-  .innerText =
 
-    audit.date;
+const values =
 
+Object.values(
+audit.answers
+);
 
 
-  const values =
+const compliant =
 
-    Object.values(
-      audit.answers
-    );
+values.filter(
+v =>
+v ===
+"compliant"
+).length;
 
 
-  const compliant =
+const nc =
 
-    values
-    .filter(
-      v =>
-      v ===
-      "compliant"
-    )
-    .length;
+values.filter(
+v =>
+v ===
+"noncompliant"
+).length;
 
 
-  const nc =
+const na =
 
-    values
-    .filter(
-      v =>
-      v ===
-      "noncompliant"
-    )
-    .length;
+values.filter(
+v =>
+v ===
+"na"
+).length;
 
 
-  const na =
+const nr =
 
-    values
-    .filter(
-      v =>
-      v ===
-      "na"
-    )
-    .length;
+values.filter(
+v =>
+v ===
+"nr"
+).length;
 
 
-  const nr =
+const applicable =
 
-    values
-    .filter(
-      v =>
-      v ===
-      "nr"
-    )
-    .length;
+compliant + nc;
 
 
-  const applicable =
+const score =
 
-    compliant
+applicable
 
-    +
+?
 
-    nc;
+Math.round(
 
+compliant
 
-  const score =
+/
 
-    applicable
+applicable
 
-    ?
+*
 
-    Math.round(
+100
 
-      compliant
+)
 
-      /
+:
 
-      applicable
+0;
 
-      *
 
-      100
+document
+.getElementById(
+"score"
+)
+.innerText =
 
-    )
+score;
 
-    :
 
-    0;
+document
+.getElementById(
+"compliantCount"
+)
+.innerText =
 
+compliant;
 
 
-  document
-  .getElementById(
-    "score"
-  )
-  .innerText =
-    score;
+document
+.getElementById(
+"ncCount"
+)
+.innerText =
 
+nc;
 
-  document
-  .getElementById(
-    "compliantCount"
-  )
-  .innerText =
-    compliant;
 
+document
+.getElementById(
+"naCount"
+)
+.innerText =
 
-  document
-  .getElementById(
-    "ncCount"
-  )
-  .innerText =
-    nc;
+na;
 
 
-  document
-  .getElementById(
-    "naCount"
-  )
-  .innerText =
-    na;
+document
+.getElementById(
+"nrCount"
+)
+.innerText =
 
-
-  document
-  .getElementById(
-    "nrCount"
-  )
-  .innerText =
-    nr;
+nr;
 
 }
 
 
 
-/* --------------------------------
-   COMPLETE AUDIT
--------------------------------- */
+/* COMPLETE */
 
 function completeAudit() {
 
+const completed =
 
-  const completed =
+JSON.parse(
 
-    JSON.parse(
+localStorage.getItem(
+"foodAuditCompleted"
+)
 
-      localStorage
-      .getItem(
-        "foodAuditCompleted"
-      )
+)
 
-    )
-
-    || [];
+|| [];
 
 
-  completed
-  .unshift(
-    {
+completed.unshift({
 
-      ...audit,
+...audit,
 
-      completed:
-        new Date()
-        .toISOString()
+completed:
+new Date()
+.toISOString()
 
-    }
-  );
+});
 
 
-  localStorage
-  .setItem(
+localStorage.setItem(
 
-    "foodAuditCompleted",
+"foodAuditCompleted",
 
-    JSON.stringify(
-      completed
-    )
+JSON.stringify(
+completed
+)
 
-  );
-
-
-  localStorage
-  .removeItem(
-    "foodAuditActive"
-  );
+);
 
 
-  audit =
-    null;
+localStorage.removeItem(
+"foodAuditActive"
+);
 
 
-  alert(
-    "Audit completed."
-  );
+audit = null;
 
 
-  showCompleted();
+alert(
+"Audit completed."
+);
+
+
+showCompleted();
 
 }
 
 
 
-/* --------------------------------
-   COMPLETED AUDITS
--------------------------------- */
+/* COMPLETED */
 
 function showCompleted() {
 
-
-  hideAll();
-
-
-  document
-  .getElementById(
-    "completedView"
-  )
-  .classList
-  .remove(
-    "hidden"
-  );
+hideAll();
 
 
-  const completed =
-
-    JSON.parse(
-
-      localStorage
-      .getItem(
-        "foodAuditCompleted"
-      )
-
-    )
-
-    || [];
+document
+.getElementById(
+"completedView"
+)
+.classList
+.remove("hidden");
 
 
-  let html = "";
+const completed =
+
+JSON.parse(
+
+localStorage.getItem(
+"foodAuditCompleted"
+)
+
+)
+
+|| [];
 
 
-  completed
-  .forEach(
-    a => {
+let html = "";
 
 
-      html += `
+completed
+.forEach(
 
-      <div
-        class="card"
-      >
-
-        <b>
-
-          ${a.facility}
-
-        </b>
+a => {
 
 
-        <div
-          class="subtitle"
-        >
+html += `
 
-          ${a.date}
+<div
+class="card"
+>
 
-          •
+<b>
 
-          ${a.auditor}
+${a.facility}
 
-        </div>
+</b>
 
-      </div>
+<div
+class="muted"
+style="margin-top:4px"
+>
 
-      `;
+${a.date}
 
-    }
-  );
+•
 
+${a.auditor}
 
-  if(!html) {
+</div>
 
-    html = `
+</div>
 
-    <div
-      class="notice"
-    >
+`;
 
-      No completed audits yet.
+}
 
-    </div>
-
-    `;
-
-  }
+);
 
 
-  document
-  .getElementById(
-    "completedList"
-  )
-  .innerHTML =
-    html;
+if(!html) {
+
+html = `
+
+<div
+class="notice"
+>
+
+No completed audits yet.
+
+</div>
+
+`;
+
+}
+
+
+document
+.getElementById(
+"completedList"
+)
+.innerHTML =
+
+html;
 
 }
 
 
 
-/* --------------------------------
-   START APP
--------------------------------- */
+/* START APP */
 
 showHome();
 

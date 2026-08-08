@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>CoreCivic Food Service Audit</title>
+
+<style>
+:root {
+  --navy:#0b2f57;
+  --green:#198754;
+  --red:#c62828;
+  --orange:#e67e22;
+  --gray:#6c757d;
+  --light:#f4f7fa;
+  --border:#d8e0e7;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#eef2f6;
+  color:#1f2933;
+}
+
+.app {
+  max-width:600px;
+  min-height:100vh;
+  margin:auto;
+  background:white;
+}
+
+header {
+  background:var(--navy);
+  color:white;
+  padding:16px;
+  text-align:center;
+  font-weight:700;
+  font-size:18px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+main { padding:16px; }
+
+h1 {
+  color:var(--navy);
+  font-size:25px;
+  margin-bottom:4px;
+}
+
+.subtitle {
+  color:#6b7580;
+  margin-bottom:22px;
+}
+
+.card {
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:14px;
+  background:white;
+}
+
+label {
+  display:block;
+  font-weight:700;
+  margin:12px 0 6px;
+}
+
+select,input[type="date"],textarea {
+  width:100%;
+  padding:12px;
+  font-size:16px;
+  border:1px solid #bfc8d2;
+  border-radius:10px;
+}
+
+button {
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.primary {
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:14px;
+  background:var(--navy);
+  color:white;
+  font-size:17px;
+  font-weight:700;
+}
+
+.secondary {
+  border:1px solid #b8c2cc;
+  background:white;
+  border-radius:9px;
+  padding:10px;
+}
+
+.homeButton {
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  margin:10px 0;
+  text-align:left;
+}
+
+.homeIcon {
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:var(--navy);
+  color:white;
+  font-size:24px;
+}
+
+.homeButton b {
+  font-size:17px;
+}
+
+.homeButton small {
+  display:block;
+  color:#6c757d;
+  margin-top:3px;
+}
+
+.hidden { display:none; }
+
+.progressText {
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.progressTrack {
+  height:8px;
+  background:#e6ebef;
+  border-radius:50px;
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.progressBar {
+  height:100%;
+  background:#2da562;
+  width:0%;
+}
+
+.auditItem {
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin-bottom:14px;
+  overflow:hidden;
+}
+
+.itemHeader {
+  background:#f6f8fa;
+  padding:13px;
+  font-weight:700;
+}
+
+.itemCode {
+  color:#68737e;
+  font-size:12px;
+  display:block;
+  margin-bottom:4px;
+}
+
+.requirement {
+  padding:13px;
+  border-top:1px solid #e5eaee;
+}
+
+.requirementText {
+  margin-bottom:10px;
+  line-height:1.35;
+}
+
+.statusGrid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+}
+
+.status {
+  min-height:48px;
+  border:1px solid #c9d1d8;
+  background:white;
+  border-radius:9px;
+  font-size:13px;
+}
+
+.status.compliant.active {
+  background:#e8f7ee;
+  border-color:#198754;
+  color:#146c43;
+}
+
+.status.noncompliant.active {
+  background:#fdecec;
+  border-color:#c62828;
+  color:#a01515;
+}
+
+.status.na.active {
+  background:#edf0f3;
+  border-color:#77838e;
+}
+
+.status.nr.active {
+  background:#fff2e2;
+  border-color:#e67e22;
+  color:#914800;
+}
+
+.finding {
+  margin-top:12px;
+  padding:11px;
+  border:1px solid #efb5b5;
+  background:#fff4f4;
+  border-radius:10px;
+}
+
+.finding label {
+  font-size:13px;
+}
+
+.required {
+  color:var(--red);
+}
+
+.photos {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+
+.photos img {
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #ccd4dc;
+}
+
+.summaryGrid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.stat {
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:center;
+  padding:12px;
+}
+
+.stat strong {
+  display:block;
+  color:var(--navy);
+  font-size:26px;
+}
+
+.notice {
+  background:#eaf3fb;
+  color:#214f78;
+  padding:11px;
+  border-radius:10px;
+  font-size:13px;
+  margin-top:14px;
+}
+
+.footer {
+  position:sticky;
+  bottom:0;
+  display:flex;
+  gap:8px;
+  padding:10px;
+  background:white;
+  border-top:1px solid var(--border);
+}
+
+.footer button { flex:1; }
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>CoreCivic Food Service Audit</header>
+
+<main id="homeView">
+
+  <div style="text-align:center;padding:20px 5px">
+    <div style="font-size:46px;color:#0b2f57">✓</div>
+    <h1>CRT-05 Food Service</h1>
+    <div class="subtitle">iPhone Prototype</div>
+  </div>
+
+  <button class="homeButton" onclick="showNewAudit()">
+    <div class="homeIcon">+</div>
+    <div>
+      <b>New Audit</b>
+      <small>Start a new food service audit</small>
+    </div>
+  </button>
+
+  <button id="resumeButton" class="homeButton hidden" onclick="showAudit()">
+    <div class="homeIcon" style="background:#e67e22">↻</div>
+    <div>
+      <b>Resume Audit</b>
+      <small id="resumeText"></small>
+    </div>
+  </button>
+
+  <button class="homeButton" onclick="showCompleted()">
+    <div class="homeIcon" style="background:#198754">✓</div>
+    <div>
+      <b>Completed Audits</b>
+      <small>View completed test audits</small>
+    </div>
+  </button>
+
+  <div class="notice">
+    This is our field-test prototype. It saves the unfinished audit on this device.
+  </div>
+
+</main>
+
+
+<main id="newView" class="hidden">
+
+  <h1>New Audit</h1>
+
+  <div class="card">
+
+    <label>Facility</label>
+
+    <select id="facility">
+      <option value="">Select Facility</option>
+      <option>Sample Facility A</option>
+      <option>Sample Facility B</option>
+      <option>Sample Facility C</option>
+    </select>
+
+    <label>Auditor</label>
+
+    <select id="auditor">
+      <option value="">Select Auditor</option>
+      <option>Steven Luttrell</option>
+      <option>Auditor 2</option>
+      <option>Auditor 3</option>
+    </select>
+
+    <label>Audit Date</label>
+    <input type="date" id="auditDate">
+
+  </div>
+
+  <button class="primary" onclick="startAudit()">Start Audit</button>
+
+  <button class="secondary"
+          style="width:100%;margin-top:8px"
+          onclick="showHome()">
+    Cancel
+  </button>
+
+</main>
+
+
+<section id="auditView" class="hidden">
+
+<main>
+
+  <b>Audit in Progress</b>
+  <div id="auditFacility" class="subtitle"></div>
+
+  <div class="progressText">
+    <span id="progressCount"></span>
+    <span id="progressPercent"></span>
+  </div>
+
+  <div class="progressTrack">
+    <div id="progressBar" class="progressBar"></div>
+  </div>
+
+  <div id="checklist"></div>
+
+</main>
+
+<div class="footer">
+
+  <button class="secondary" onclick="showHome()">Home</button>
+
+  <button class="primary" onclick="finalReview()">
+    Final Review
+  </button>
+
+</div>
+
+</section>
+
+
+<main id="summaryView" class="hidden">
+
+<h1>Final Review</h1>
+
+<div class="card">
+
+  <b id="summaryFacility"></b>
+  <div id="summaryDate" class="subtitle"></div>
+
+  <div style="font-size:38px;color:#198754;font-weight:800">
+    <span id="score"></span>%
+  </div>
+
+</div>
+
+<div class="summaryGrid">
+
+  <div class="stat">
+    <strong id="compliantCount">0</strong>
+    Compliant
+  </div>
+
+  <div class="stat">
+    <strong id="ncCount">0</strong>
+    Non-Compliant
+  </div>
+
+  <div class="stat">
+    <strong id="naCount">0</strong>
+    N/A
+  </div>
+
+  <div class="stat">
+    <strong id="nrCount">0</strong>
+    Not Reviewed
+  </div>
+
+</div>
+
+<button class="primary"
+        style="margin-top:15px"
+        onclick="completeAudit()">
+  Complete Audit
+</button>
+
+<button class="secondary"
+        style="width:100%;margin-top:8px"
+        onclick="showAudit()">
+  Back to Audit
+</button>
+
+</main>
+
+
+<main id="completedView" class="hidden">
+
+<h1>Completed Audits</h1>
+
+<div id="completedList"></div>
+
+<button class="secondary"
+        style="width:100%"
+        onclick="showHome()">
+  Home
+</button>
+
+</main>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+{
+code:"CRT-05-G-02",
+title:"Dry Storage Area following Food Safety Guidelines",
+checks:[
+"Food is stored at least 6 inches off the floor.",
+"Food is stored at least 18 inches below ceiling sprinkler heads.",
+"Partially used products are properly sealed.",
+"Dry storage flooring is clean."
+]
+},
+
+{
+code:"CRT-05-H-02",
+title:"Cooler Storage Areas following Food Safety Guidelines",
+checks:[
+"Raw or hazardous foods are not stored above ready-to-eat foods.",
+"Food is stored at least 6 inches off the floor.",
+"Leftovers are labeled, dated, covered and stored in clean containers.",
+"Cooler is clean."
+]
+},
+
+{
+code:"CRT-05-L-05",
+title:"Hand Washing is Practiced Effectively",
+checks:[
+"Hand washing signs are posted.",
+"Observed hand washing lasts approximately 20 seconds."
+]
+}
+
+];
+
+let audit =
+JSON.parse(localStorage.getItem("foodAuditActive")) || null;
+
+function save() {
+  localStorage.setItem("foodAuditActive",JSON.stringify(audit));
+}
+
+function hideAll() {
+  ["homeView","newView","auditView","summaryView","completedView"]
+  .forEach(id=>document.getElementById(id).classList.add("hidden"));
+}
+
+function showHome() {
+
+  hideAll();
+
+  document.getElementById("homeView").classList.remove("hidden");
+
+  const resume=document.getElementById("resumeButton");
+
+  if(audit) {
+
+    resume.classList.remove("hidden");
+
+    document.getElementById("resumeText").innerText =
+      audit.facility;
+
+  } else {
+
+    resume.classList.add("hidden");
+
+  }
+
+}
+
+function showNewAudit() {
+
+  hideAll();
+
+  document.getElementById("newView").classList.remove("hidden");
+
+}
+
+function startAudit() {
+
+  const facility=document.getElementById("facility").value;
+  const auditor=document.getElementById("auditor").value;
+  const date=document.getElementById("auditDate").value;
+
+  if(!facility || !auditor || !date) {
+
+    alert("Please select Facility, Auditor and Audit Date.");
+
+    return;
+
+  }
+
+  audit={
+    facility,
+    auditor,
+    date,
+    answers:{},
+    comments:{},
+    photos:{}
+  };
+
+  save();
+
+  showAudit();
+
+}
+
+function showAudit() {
+
+  if(!audit) {
+    showHome();
+    return;
+  }
+
+  hideAll();
+
+  document.getElementById("auditView").classList.remove("hidden");
+
+  document.getElementById("auditFacility").innerText =
+    audit.facility;
+
+  renderQuestions();
+
+}
+
+function setStatus(key,status) {
+
+  audit.answers[key]=status;
+
+  if(status!=="noncompliant") {
+    delete audit.comments[key];
+    delete audit.photos[key];
+  }
+
+  save();
+
+  renderQuestions(key);
+
+}
+
+function setComment(key,value) {
+
+  audit.comments[key]=value;
+
+  save();
+
+}
+
+function addPhotos(key,input) {
+
+  const files=Array.from(input.files);
+
+  audit.photos[key]=audit.photos[key] || [];
+
+  files.forEach(file=>{
+
+    const reader=new FileReader();
+
+    reader.onload=function(){
+
+      audit.photos[key].push(reader.result);
+
+      save();
+
+      renderQuestions(key);
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+function statusButton(key,value,label,current) {
+
+return `
+<button
+class="status ${value} ${current===value ? "active":""}"
+onclick="setStatus('${key}','${value}')">
+${label}
+</button>`;
+
+}
+
+function renderQuestions(anchor) {
+
+  let html="";
+
+  let total=0;
+
+  questions.forEach(question=>{
+
+    html+=`
+
+    <div class="auditItem">
+
+      <div class="itemHeader">
+
+        <span class="itemCode">
+          ${question.code}
+        </span>
+
+        ${question.title}
+
+      </div>`;
+
+    question.checks.forEach((text,index)=>{
+
+      total++;
+
+      const key=question.code+"-"+index;
+
+      const current=audit.answers[key] || "";
+
+      html+=`
+
+      <div class="requirement" id="${key}">
+
+        <div class="requirementText">
+          ${text}
+        </div>
+
+        <div class="statusGrid">
+
+          ${statusButton(key,"compliant","✓ Compliant",current)}
+
+          ${statusButton(key,"noncompliant","✕ Non-Compliant",current)}
+
+          ${statusButton(key,"na","N/A",current)}
+
+          ${statusButton(key,"nr","Not Reviewed",current)}
+
+        </div>`;
+
+      if(current==="noncompliant") {
+
+        const photos=audit.photos[key] || [];
+
+        html+=`
+
+        <div class="finding">
+
+          <label>
+          Comment
+          <span class="required">Required</span>
+          </label>
+
+          <textarea
+          rows="3"
+          placeholder="Type or use iPhone microphone..."
+          oninput="setComment('${key}',this.value)"
+          >${audit.comments[key] || ""}</textarea>
+
+          <label>
+          Photos
+          </label>
+
+          <input
+          type="file"
+          accept="image/*"
+          capture="environment"
+          multiple
+          onchange="addPhotos('${key}',this)"
+          >
+
+          <div class="photos">
+
+          ${photos.map(photo=>
+            `<img src="${photo}">`
+          ).join("")}
+
+          </div>
+
+        </div>`;
+
+      }
+
+      html+="</div>";
+
+    });
+
+    html+="</div>";
+
+  });
+
+  document.getElementById("checklist").innerHTML=html;
+
+  const answered=Object.keys(audit.answers).length;
+
+  const percent=Math.round(answered/total*100);
+
+  document.getElementById("progressCount").innerText =
+    answered+" of "+total+" reviewed";
+
+  document.getElementById("progressPercent").innerText =
+    percent+"%";
+
+  document.getElementById("progressBar").style.width =
+    percent+"%";
+
+  if(anchor) {
+
+    setTimeout(()=>{
+
+      document.getElementById(anchor)
+      ?.scrollIntoView({block:"center"});
+
+    },50);
+
+  }
+
+}
+
+function finalReview() {
+
+  const total=
+    questions.reduce((sum,q)=>sum+q.checks.length,0);
+
+  const answered=
+    Object.keys(audit.answers).length;
+
+  if(answered<total) {
+
+    alert((total-answered)+" requirement(s) still need an answer.");
+
+    return;
+
+  }
+
+  for(const key in audit.answers) {
+
+    if(
+      audit.answers[key]==="noncompliant"
+      &&
+      !audit.comments[key]?.trim()
+    ) {
+
+      alert("Every Non-Compliant finding requires a comment.");
+
+      return;
+
+    }
+
+  }
+
+  hideAll();
+
+  document
+  .getElementById("summaryView")
+  .classList.remove("hidden");
+
+  document.getElementById("summaryFacility")
+  .innerText=audit.facility;
+
+  document.getElementById("summaryDate")
+  .innerText=audit.date;
+
+  const values=Object.values(audit.answers);
+
+  const compliant=
+    values.filter(v=>v==="compliant").length;
+
+  const nc=
+    values.filter(v=>v==="noncompliant").length;
+
+  const na=
+    values.filter(v=>v==="na").length;
+
+  const nr=
+    values.filter(v=>v==="nr").length;
+
+  const applicable=compliant+nc;
+
+  const score=
+    applicable
+    ? Math.round(compliant/applicable*100)
+    : 0;
+
+  document.getElementById("score").innerText=score;
+  document.getElementById("compliantCount").innerText=compliant;
+  document.getElementById("ncCount").innerText=nc;
+  document.getElementById("naCount").innerText=na;
+  document.getElementById("nrCount").innerText=nr;
+
+}
+
+function completeAudit() {
+
+  const completed=
+    JSON.parse(localStorage.getItem("foodAuditCompleted"))
+    || [];
+
+  completed.unshift({
+    ...audit,
+    completed:new Date().toISOString()
+  });
+
+  localStorage.setItem(
+    "foodAuditCompleted",
+    JSON.stringify(completed)
+  );
+
+  localStorage.removeItem("foodAuditActive");
+
+  audit=null;
+
+  alert("Audit completed.");
+
+  showCompleted();
+
+}
+
+function showCompleted() {
+
+  hideAll();
+
+  document
+  .getElementById("completedView")
+  .classList.remove("hidden");
+
+  const completed=
+    JSON.parse(localStorage.getItem("foodAuditCompleted"))
+    || [];
+
+  let html="";
+
+  completed.forEach(a=>{
+
+    html+=`
+
+    <div class="card">
+
+      <b>${a.facility}</b>
+
+      <div class="subtitle">
+        ${a.date} • ${a.auditor}
+      </div>
+
+    </div>`;
+
+  });
+
+  if(!html) {
+
+    html=`
+    <div class="notice">
+    No completed audits yet.
+    </div>`;
+
+  }
+
+  document.getElementById("completedList").innerHTML=html;
+
+}
+
+showHome();
+
+</script>
+
+</body>
+</html>

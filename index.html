@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+>
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0b2f57">
+
 <title>CoreCivic Food Service Audit</title>
 
 <style>
+
 :root {
   --navy:#0b2f57;
+  --blue:#164a7b;
   --green:#198754;
   --red:#c62828;
   --orange:#e67e22;
@@ -18,11 +27,18 @@
   --border:#d8e0e7;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
 body {
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
   background:#eef2f6;
   color:#1f2933;
 }
@@ -46,7 +62,9 @@ header {
   z-index:10;
 }
 
-main { padding:16px; }
+main {
+  padding:16px;
+}
 
 h1 {
   color:var(--navy);
@@ -73,12 +91,19 @@ label {
   margin:12px 0 6px;
 }
 
-select,input[type="date"],textarea {
+select,
+input[type="date"],
+textarea {
   width:100%;
   padding:12px;
   font-size:16px;
   border:1px solid #bfc8d2;
   border-radius:10px;
+  background:white;
+}
+
+textarea {
+  resize:vertical;
 }
 
 button {
@@ -102,6 +127,22 @@ button {
   background:white;
   border-radius:9px;
   padding:10px;
+}
+
+.dictateButton {
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  margin-bottom:8px;
+  background:var(--green);
+  color:white;
+  font-size:16px;
+  font-weight:700;
+}
+
+.dictateButton.listening {
+  background:var(--red);
 }
 
 .homeButton {
@@ -138,7 +179,9 @@ button {
   margin-top:3px;
 }
 
-.hidden { display:none; }
+.hidden {
+  display:none;
+}
 
 .progressText {
   display:flex;
@@ -244,6 +287,12 @@ button {
   color:var(--red);
 }
 
+.voiceHelp {
+  font-size:12px;
+  color:#6c757d;
+  margin:0 0 10px;
+}
+
 .photos {
   display:flex;
   flex-wrap:wrap;
@@ -257,6 +306,32 @@ button {
   object-fit:cover;
   border-radius:8px;
   border:1px solid #ccd4dc;
+}
+
+.correctedButtons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.correctedButton {
+  padding:11px;
+  border:1px solid #c9d1d8;
+  border-radius:9px;
+  background:white;
+  font-weight:700;
+}
+
+.correctedButton.yes.active {
+  background:#e8f7ee;
+  border-color:#198754;
+  color:#146c43;
+}
+
+.correctedButton.no.active {
+  background:#fdecec;
+  border-color:#c62828;
+  color:#a01515;
 }
 
 .summaryGrid {
@@ -297,7 +372,9 @@ button {
   border-top:1px solid var(--border);
 }
 
-.footer button { flex:1; }
+.footer button {
+  flex:1;
+}
 
 </style>
 </head>
@@ -306,112 +383,258 @@ button {
 
 <div class="app">
 
-<header>CoreCivic Food Service Audit</header>
+<header>
+CoreCivic Food Service Audit
+</header>
+
+
+<!-- HOME -->
 
 <main id="homeView">
 
   <div style="text-align:center;padding:20px 5px">
-    <div style="font-size:46px;color:#0b2f57">✓</div>
-    <h1>CRT-05 Food Service</h1>
-    <div class="subtitle">iPhone Prototype</div>
+
+    <div style="font-size:46px;color:#0b2f57">
+      ✓
+    </div>
+
+    <h1>
+      CRT-05 Food Service
+    </h1>
+
+    <div class="subtitle">
+      iPhone Prototype
+    </div>
+
   </div>
 
-  <button class="homeButton" onclick="showNewAudit()">
-    <div class="homeIcon">+</div>
+
+  <button
+    class="homeButton"
+    onclick="showNewAudit()"
+  >
+
+    <div class="homeIcon">
+      +
+    </div>
+
     <div>
       <b>New Audit</b>
-      <small>Start a new food service audit</small>
+      <small>
+        Start a new food service audit
+      </small>
     </div>
+
   </button>
 
-  <button id="resumeButton" class="homeButton hidden" onclick="showAudit()">
-    <div class="homeIcon" style="background:#e67e22">↻</div>
+
+  <button
+    id="resumeButton"
+    class="homeButton hidden"
+    onclick="showAudit()"
+  >
+
+    <div
+      class="homeIcon"
+      style="background:#e67e22"
+    >
+      ↻
+    </div>
+
     <div>
       <b>Resume Audit</b>
       <small id="resumeText"></small>
     </div>
+
   </button>
 
-  <button class="homeButton" onclick="showCompleted()">
-    <div class="homeIcon" style="background:#198754">✓</div>
+
+  <button
+    class="homeButton"
+    onclick="showCompleted()"
+  >
+
+    <div
+      class="homeIcon"
+      style="background:#198754"
+    >
+      ✓
+    </div>
+
     <div>
       <b>Completed Audits</b>
-      <small>View completed test audits</small>
+      <small>
+        View completed test audits
+      </small>
     </div>
+
   </button>
 
+
   <div class="notice">
-    This is our field-test prototype. It saves the unfinished audit on this device.
+
+    This is our field-test prototype.
+    The unfinished audit is saved on this device.
+
   </div>
 
 </main>
 
 
-<main id="newView" class="hidden">
 
-  <h1>New Audit</h1>
+<!-- NEW AUDIT -->
+
+<main
+  id="newView"
+  class="hidden"
+>
+
+  <h1>
+    New Audit
+  </h1>
+
 
   <div class="card">
 
-    <label>Facility</label>
+    <label>
+      Facility
+    </label>
 
     <select id="facility">
-      <option value="">Select Facility</option>
-      <option>Sample Facility A</option>
-      <option>Sample Facility B</option>
-      <option>Sample Facility C</option>
+
+      <option value="">
+        Select Facility
+      </option>
+
+      <option>
+        Sample Facility A
+      </option>
+
+      <option>
+        Sample Facility B
+      </option>
+
+      <option>
+        Sample Facility C
+      </option>
+
     </select>
 
-    <label>Auditor</label>
+
+    <label>
+      Auditor
+    </label>
 
     <select id="auditor">
-      <option value="">Select Auditor</option>
-      <option>Steven Luttrell</option>
-      <option>Auditor 2</option>
-      <option>Auditor 3</option>
+
+      <option value="">
+        Select Auditor
+      </option>
+
+      <option>
+        Steven Luttrell
+      </option>
+
+      <option>
+        Auditor 2
+      </option>
+
+      <option>
+        Auditor 3
+      </option>
+
     </select>
 
-    <label>Audit Date</label>
-    <input type="date" id="auditDate">
+
+    <label>
+      Audit Date
+    </label>
+
+    <input
+      type="date"
+      id="auditDate"
+    >
 
   </div>
 
-  <button class="primary" onclick="startAudit()">Start Audit</button>
 
-  <button class="secondary"
-          style="width:100%;margin-top:8px"
-          onclick="showHome()">
+  <button
+    class="primary"
+    onclick="startAudit()"
+  >
+    Start Audit
+  </button>
+
+
+  <button
+    class="secondary"
+    style="width:100%;margin-top:8px"
+    onclick="showHome()"
+  >
     Cancel
   </button>
 
 </main>
 
 
-<section id="auditView" class="hidden">
+
+<!-- AUDIT -->
+
+<section
+  id="auditView"
+  class="hidden"
+>
 
 <main>
 
-  <b>Audit in Progress</b>
-  <div id="auditFacility" class="subtitle"></div>
+  <b>
+    Audit in Progress
+  </b>
+
+  <div
+    id="auditFacility"
+    class="subtitle"
+  ></div>
+
 
   <div class="progressText">
+
     <span id="progressCount"></span>
+
     <span id="progressPercent"></span>
+
   </div>
 
+
   <div class="progressTrack">
-    <div id="progressBar" class="progressBar"></div>
+
+    <div
+      id="progressBar"
+      class="progressBar"
+    ></div>
+
   </div>
+
 
   <div id="checklist"></div>
 
 </main>
 
+
 <div class="footer">
 
-  <button class="secondary" onclick="showHome()">Home</button>
+  <button
+    class="secondary"
+    onclick="showHome()"
+  >
+    Home
+  </button>
 
-  <button class="primary" onclick="finalReview()">
+
+  <button
+    class="primary"
+    onclick="finalReview()"
+  >
     Final Review
   </button>
 
@@ -420,69 +643,133 @@ button {
 </section>
 
 
-<main id="summaryView" class="hidden">
 
-<h1>Final Review</h1>
+<!-- FINAL REVIEW -->
+
+<main
+  id="summaryView"
+  class="hidden"
+>
+
+<h1>
+  Final Review
+</h1>
+
 
 <div class="card">
 
   <b id="summaryFacility"></b>
-  <div id="summaryDate" class="subtitle"></div>
 
-  <div style="font-size:38px;color:#198754;font-weight:800">
+  <div
+    id="summaryDate"
+    class="subtitle"
+  ></div>
+
+
+  <div
+    style="
+      font-size:38px;
+      color:#198754;
+      font-weight:800;
+    "
+  >
+
     <span id="score"></span>%
+
   </div>
 
 </div>
+
 
 <div class="summaryGrid">
 
   <div class="stat">
-    <strong id="compliantCount">0</strong>
+
+    <strong id="compliantCount">
+      0
+    </strong>
+
     Compliant
+
   </div>
 
+
   <div class="stat">
-    <strong id="ncCount">0</strong>
+
+    <strong id="ncCount">
+      0
+    </strong>
+
     Non-Compliant
+
   </div>
 
+
   <div class="stat">
-    <strong id="naCount">0</strong>
+
+    <strong id="naCount">
+      0
+    </strong>
+
     N/A
+
   </div>
 
+
   <div class="stat">
-    <strong id="nrCount">0</strong>
+
+    <strong id="nrCount">
+      0
+    </strong>
+
     Not Reviewed
+
   </div>
 
 </div>
 
-<button class="primary"
-        style="margin-top:15px"
-        onclick="completeAudit()">
+
+<button
+  class="primary"
+  style="margin-top:15px"
+  onclick="completeAudit()"
+>
   Complete Audit
 </button>
 
-<button class="secondary"
-        style="width:100%;margin-top:8px"
-        onclick="showAudit()">
+
+<button
+  class="secondary"
+  style="width:100%;margin-top:8px"
+  onclick="showAudit()"
+>
   Back to Audit
 </button>
 
 </main>
 
 
-<main id="completedView" class="hidden">
 
-<h1>Completed Audits</h1>
+<!-- COMPLETED -->
+
+<main
+  id="completedView"
+  class="hidden"
+>
+
+<h1>
+  Completed Audits
+</h1>
+
 
 <div id="completedList"></div>
 
-<button class="secondary"
-        style="width:100%"
-        onclick="showHome()">
+
+<button
+  class="secondary"
+  style="width:100%"
+  onclick="showHome()"
+>
   Home
 </button>
 
@@ -491,108 +778,266 @@ button {
 </div>
 
 
+
 <script>
+
+
+/* --------------------------------
+   SAMPLE AUDIT QUESTIONS
+-------------------------------- */
 
 const questions = [
 
 {
-code:"CRT-05-G-02",
-title:"Dry Storage Area following Food Safety Guidelines",
-checks:[
-"Food is stored at least 6 inches off the floor.",
-"Food is stored at least 18 inches below ceiling sprinkler heads.",
-"Partially used products are properly sealed.",
-"Dry storage flooring is clean."
-]
+  code:"CRT-05-G-02",
+
+  title:
+  "Dry Storage Area following Food Safety Guidelines",
+
+  checks:[
+
+    "Food is stored at least 6 inches off the floor.",
+
+    "Food is stored at least 18 inches below ceiling sprinkler heads.",
+
+    "Partially used products are properly sealed.",
+
+    "Dry storage flooring is clean."
+
+  ]
 },
 
-{
-code:"CRT-05-H-02",
-title:"Cooler Storage Areas following Food Safety Guidelines",
-checks:[
-"Raw or hazardous foods are not stored above ready-to-eat foods.",
-"Food is stored at least 6 inches off the floor.",
-"Leftovers are labeled, dated, covered and stored in clean containers.",
-"Cooler is clean."
-]
-},
 
 {
-code:"CRT-05-L-05",
-title:"Hand Washing is Practiced Effectively",
-checks:[
-"Hand washing signs are posted.",
-"Observed hand washing lasts approximately 20 seconds."
-]
+  code:"CRT-05-H-02",
+
+  title:
+  "Cooler Storage Areas following Food Safety Guidelines",
+
+  checks:[
+
+    "Raw or hazardous foods are not stored above ready-to-eat foods.",
+
+    "Food is stored at least 6 inches off the floor.",
+
+    "Leftovers are labeled, dated, covered and stored in clean containers.",
+
+    "Cooler is clean."
+
+  ]
+},
+
+
+{
+  code:"CRT-05-L-05",
+
+  title:
+  "Hand Washing is Practiced Effectively",
+
+  checks:[
+
+    "Hand washing signs are posted.",
+
+    "Observed hand washing lasts approximately 20 seconds."
+
+  ]
 }
 
 ];
 
+
+
+/* --------------------------------
+   LOAD ACTIVE AUDIT
+-------------------------------- */
+
 let audit =
-JSON.parse(localStorage.getItem("foodAuditActive")) || null;
+JSON.parse(
+  localStorage.getItem(
+    "foodAuditActive"
+  )
+) || null;
+
+
+
+/* --------------------------------
+   SAVE
+-------------------------------- */
 
 function save() {
-  localStorage.setItem("foodAuditActive",JSON.stringify(audit));
+
+  localStorage.setItem(
+
+    "foodAuditActive",
+
+    JSON.stringify(audit)
+
+  );
+
 }
 
+
+
+/* --------------------------------
+   SCREEN HANDLING
+-------------------------------- */
+
 function hideAll() {
-  ["homeView","newView","auditView","summaryView","completedView"]
-  .forEach(id=>document.getElementById(id).classList.add("hidden"));
+
+  [
+
+    "homeView",
+
+    "newView",
+
+    "auditView",
+
+    "summaryView",
+
+    "completedView"
+
+  ].forEach(
+
+    id =>
+
+    document
+    .getElementById(id)
+    .classList
+    .add("hidden")
+
+  );
+
 }
+
+
 
 function showHome() {
 
   hideAll();
 
-  document.getElementById("homeView").classList.remove("hidden");
 
-  const resume=document.getElementById("resumeButton");
+  document
+  .getElementById("homeView")
+  .classList
+  .remove("hidden");
+
+
+  const resume =
+    document
+    .getElementById(
+      "resumeButton"
+    );
+
 
   if(audit) {
 
-    resume.classList.remove("hidden");
+    resume
+    .classList
+    .remove("hidden");
 
-    document.getElementById("resumeText").innerText =
+
+    document
+    .getElementById(
+      "resumeText"
+    )
+    .innerText =
       audit.facility;
 
-  } else {
+  }
 
-    resume.classList.add("hidden");
+  else {
+
+    resume
+    .classList
+    .add("hidden");
 
   }
 
 }
+
+
 
 function showNewAudit() {
 
   hideAll();
 
-  document.getElementById("newView").classList.remove("hidden");
+
+  document
+  .getElementById(
+    "newView"
+  )
+  .classList
+  .remove("hidden");
 
 }
 
+
+
+/* --------------------------------
+   START AUDIT
+-------------------------------- */
+
 function startAudit() {
 
-  const facility=document.getElementById("facility").value;
-  const auditor=document.getElementById("auditor").value;
-  const date=document.getElementById("auditDate").value;
+  const facility =
+    document
+    .getElementById(
+      "facility"
+    )
+    .value;
 
-  if(!facility || !auditor || !date) {
 
-    alert("Please select Facility, Auditor and Audit Date.");
+  const auditor =
+    document
+    .getElementById(
+      "auditor"
+    )
+    .value;
+
+
+  const date =
+    document
+    .getElementById(
+      "auditDate"
+    )
+    .value;
+
+
+  if(
+    !facility ||
+    !auditor ||
+    !date
+  ) {
+
+    alert(
+      "Please select Facility, Auditor and Audit Date."
+    );
 
     return;
 
   }
 
-  audit={
+
+  audit = {
+
     facility,
+
     auditor,
+
     date,
+
     answers:{},
+
     comments:{},
+
+    corrective:{},
+
+    corrected:{},
+
     photos:{}
+
   };
+
 
   save();
 
@@ -600,32 +1045,76 @@ function startAudit() {
 
 }
 
+
+
+/* --------------------------------
+   SHOW AUDIT
+-------------------------------- */
+
 function showAudit() {
 
   if(!audit) {
+
     showHome();
+
     return;
+
   }
+
 
   hideAll();
 
-  document.getElementById("auditView").classList.remove("hidden");
 
-  document.getElementById("auditFacility").innerText =
+  document
+  .getElementById(
+    "auditView"
+  )
+  .classList
+  .remove("hidden");
+
+
+  document
+  .getElementById(
+    "auditFacility"
+  )
+  .innerText =
     audit.facility;
+
 
   renderQuestions();
 
 }
 
-function setStatus(key,status) {
 
-  audit.answers[key]=status;
 
-  if(status!=="noncompliant") {
+/* --------------------------------
+   SET STATUS
+-------------------------------- */
+
+function setStatus(
+  key,
+  status
+) {
+
+  audit.answers[key] =
+    status;
+
+
+  if(
+    status !==
+    "noncompliant"
+  ) {
+
     delete audit.comments[key];
+
+    delete audit.corrective[key];
+
+    delete audit.corrected[key];
+
     delete audit.photos[key];
+
   }
+
 
   save();
 
@@ -633,205 +1122,1072 @@ function setStatus(key,status) {
 
 }
 
-function setComment(key,value) {
 
-  audit.comments[key]=value;
+
+/* --------------------------------
+   COMMENT
+-------------------------------- */
+
+function setComment(
+  key,
+  value
+) {
+
+  audit.comments[key] =
+    value;
 
   save();
 
 }
 
-function addPhotos(key,input) {
 
-  const files=Array.from(input.files);
 
-  audit.photos[key]=audit.photos[key] || [];
+/* --------------------------------
+   CORRECTIVE ACTION
+-------------------------------- */
 
-  files.forEach(file=>{
+function setCorrective(
+  key,
+  value
+) {
 
-    const reader=new FileReader();
+  audit.corrective[key] =
+    value;
 
-    reader.onload=function(){
-
-      audit.photos[key].push(reader.result);
-
-      save();
-
-      renderQuestions(key);
-
-    };
-
-    reader.readAsDataURL(file);
-
-  });
+  save();
 
 }
 
-function statusButton(key,value,label,current) {
 
-return `
-<button
-class="status ${value} ${current===value ? "active":""}"
-onclick="setStatus('${key}','${value}')">
-${label}
-</button>`;
 
-}
+/* --------------------------------
+   CORRECTED ON SITE
+-------------------------------- */
 
-function renderQuestions(anchor) {
+function setCorrected(
+  key,
+  value
+) {
 
-  let html="";
+  audit.corrected[key] =
+    value;
 
-  let total=0;
+  save();
 
-  questions.forEach(question=>{
-
-    html+=`
-
-    <div class="auditItem">
-
-      <div class="itemHeader">
-
-        <span class="itemCode">
-          ${question.code}
-        </span>
-
-        ${question.title}
-
-      </div>`;
-
-    question.checks.forEach((text,index)=>{
-
-      total++;
-
-      const key=question.code+"-"+index;
-
-      const current=audit.answers[key] || "";
-
-      html+=`
-
-      <div class="requirement" id="${key}">
-
-        <div class="requirementText">
-          ${text}
-        </div>
-
-        <div class="statusGrid">
-
-          ${statusButton(key,"compliant","✓ Compliant",current)}
-
-          ${statusButton(key,"noncompliant","✕ Non-Compliant",current)}
-
-          ${statusButton(key,"na","N/A",current)}
-
-          ${statusButton(key,"nr","Not Reviewed",current)}
-
-        </div>`;
-
-      if(current==="noncompliant") {
-
-        const photos=audit.photos[key] || [];
-
-        html+=`
-
-        <div class="finding">
-
-          <label>
-          Comment
-          <span class="required">Required</span>
-          </label>
-
-          <textarea
-          rows="3"
-          placeholder="Type or use iPhone microphone..."
-          oninput="setComment('${key}',this.value)"
-          >${audit.comments[key] || ""}</textarea>
-
-          <label>
-          Photos
-          </label>
-
-          <input
-          type="file"
-          accept="image/*"
-          capture="environment"
-          multiple
-          onchange="addPhotos('${key}',this)"
-          >
-
-          <div class="photos">
-
-          ${photos.map(photo=>
-            `<img src="${photo}">`
-          ).join("")}
-
-          </div>
-
-        </div>`;
-
-      }
-
-      html+="</div>";
-
-    });
-
-    html+="</div>";
-
-  });
-
-  document.getElementById("checklist").innerHTML=html;
-
-  const answered=Object.keys(audit.answers).length;
-
-  const percent=Math.round(answered/total*100);
-
-  document.getElementById("progressCount").innerText =
-    answered+" of "+total+" reviewed";
-
-  document.getElementById("progressPercent").innerText =
-    percent+"%";
-
-  document.getElementById("progressBar").style.width =
-    percent+"%";
-
-  if(anchor) {
-
-    setTimeout(()=>{
-
-      document.getElementById(anchor)
-      ?.scrollIntoView({block:"center"});
-
-    },50);
-
-  }
+  renderQuestions(key);
 
 }
 
-function finalReview() {
 
-  const total=
-    questions.reduce((sum,q)=>sum+q.checks.length,0);
 
-  const answered=
-    Object.keys(audit.answers).length;
+/* --------------------------------
+   PHOTOS
+-------------------------------- */
 
-  if(answered<total) {
+function addPhotos(
+  key,
+  input
+) {
 
-    alert((total-answered)+" requirement(s) still need an answer.");
+  const files =
+    Array.from(
+      input.files
+    );
+
+
+  audit.photos[key] =
+    audit.photos[key]
+    || [];
+
+
+  files.forEach(
+    file => {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+      function() {
+
+        audit
+        .photos[key]
+        .push(
+          reader.result
+        );
+
+
+        save();
+
+        renderQuestions(key);
+
+      };
+
+
+      reader
+      .readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+
+
+/* --------------------------------
+   DICTATION
+-------------------------------- */
+
+let activeRecognition = null;
+
+
+function startDictation(
+  key,
+  field
+) {
+
+  const SpeechRecognition =
+
+    window.SpeechRecognition
+
+    ||
+
+    window.webkitSpeechRecognition;
+
+
+  if(
+    !SpeechRecognition
+  ) {
+
+    alert(
+
+      "Direct speech recognition is not available in this browser. " +
+
+      "Tap inside the comment box and use the microphone on the iPhone keyboard instead."
+
+    );
 
     return;
 
   }
 
-  for(const key in audit.answers) {
+
+  if(activeRecognition) {
+
+    try {
+
+      activeRecognition.stop();
+
+    }
+    catch(e) {}
+
+  }
+
+
+  const recognition =
+    new SpeechRecognition();
+
+
+  activeRecognition =
+    recognition;
+
+
+  recognition.lang =
+    "en-US";
+
+
+  recognition.continuous =
+    false;
+
+
+  recognition.interimResults =
+    false;
+
+
+  let textareaId;
+
+
+  if(
+    field ===
+    "comment"
+  ) {
+
+    textareaId =
+      "comment-" +
+      key;
+
+  }
+
+  else {
+
+    textareaId =
+      "corrective-" +
+      key;
+
+  }
+
+
+  const box =
+    document
+    .getElementById(
+      textareaId
+    );
+
+
+  const button =
+    document
+    .getElementById(
+      "dictate-" +
+      field +
+      "-" +
+      key
+    );
+
+
+  recognition.onstart =
+  function() {
+
+    button
+    .classList
+    .add(
+      "listening"
+    );
+
+
+    button.innerText =
+      "🔴 Listening...";
+
+
+    box.placeholder =
+      "Listening... speak now.";
+
+  };
+
+
+  recognition.onresult =
+  function(event) {
+
+    const spoken =
+      event
+      .results[0][0]
+      .transcript;
+
+
+    const existing =
+      box
+      .value
+      .trim();
+
+
+    box.value =
+
+      existing
+
+      ? existing +
+        " " +
+        spoken
+
+      : spoken;
+
 
     if(
-      audit.answers[key]==="noncompliant"
-      &&
-      !audit.comments[key]?.trim()
+      field ===
+      "comment"
     ) {
 
-      alert("Every Non-Compliant finding requires a comment.");
+      setComment(
+        key,
+        box.value
+      );
+
+    }
+
+    else {
+
+      setCorrective(
+        key,
+        box.value
+      );
+
+    }
+
+  };
+
+
+  recognition.onerror =
+  function(event) {
+
+    console.log(
+      event.error
+    );
+
+
+    alert(
+
+      "Dictation could not start. " +
+
+      "Check microphone permission. " +
+
+      "You can also use the microphone on the iPhone keyboard."
+
+    );
+
+  };
+
+
+  recognition.onend =
+  function() {
+
+    button
+    .classList
+    .remove(
+      "listening"
+    );
+
+
+    if(
+      field ===
+      "comment"
+    ) {
+
+      button.innerText =
+        "🎤 Dictate Comment";
+
+      box.placeholder =
+        "Type comment or tap Dictate Comment above...";
+
+    }
+
+    else {
+
+      button.innerText =
+        "🎤 Dictate Corrective Action";
+
+      box.placeholder =
+        "Optional corrective action...";
+
+    }
+
+
+    activeRecognition =
+      null;
+
+  };
+
+
+  try {
+
+    recognition.start();
+
+  }
+
+  catch(error) {
+
+    alert(
+
+      "Dictation could not start. " +
+
+      "Try again or use the iPhone keyboard microphone."
+
+    );
+
+  }
+
+}
+
+
+
+/* --------------------------------
+   STATUS BUTTON
+-------------------------------- */
+
+function statusButton(
+  key,
+  value,
+  label,
+  current
+) {
+
+  return `
+
+  <button
+
+    class="
+      status
+      ${value}
+      ${
+        current === value
+        ? "active"
+        : ""
+      }
+    "
+
+    onclick="
+      setStatus(
+        '${key}',
+        '${value}'
+      )
+    "
+
+  >
+
+    ${label}
+
+  </button>
+
+  `;
+
+}
+
+
+
+/* --------------------------------
+   RENDER QUESTIONS
+-------------------------------- */
+
+function renderQuestions(
+  anchor
+) {
+
+  let html = "";
+
+  let total = 0;
+
+
+  questions
+  .forEach(
+    question => {
+
+
+      html += `
+
+      <div
+        class="auditItem"
+      >
+
+        <div
+          class="itemHeader"
+        >
+
+          <span
+            class="itemCode"
+          >
+
+            ${question.code}
+
+          </span>
+
+          ${question.title}
+
+        </div>
+
+      `;
+
+
+      question
+      .checks
+      .forEach(
+        (text,index) => {
+
+
+          total++;
+
+
+          const key =
+
+            question.code
+
+            +
+
+            "-"
+
+            +
+
+            index;
+
+
+          const current =
+
+            audit
+            .answers[key]
+
+            || "";
+
+
+          html += `
+
+          <div
+            class="requirement"
+            id="${key}"
+          >
+
+            <div
+              class="requirementText"
+            >
+
+              ${text}
+
+            </div>
+
+
+            <div
+              class="statusGrid"
+            >
+
+              ${
+                statusButton(
+                  key,
+                  "compliant",
+                  "✓ Compliant",
+                  current
+                )
+              }
+
+
+              ${
+                statusButton(
+                  key,
+                  "noncompliant",
+                  "✕ Non-Compliant",
+                  current
+                )
+              }
+
+
+              ${
+                statusButton(
+                  key,
+                  "na",
+                  "N/A",
+                  current
+                )
+              }
+
+
+              ${
+                statusButton(
+                  key,
+                  "nr",
+                  "Not Reviewed",
+                  current
+                )
+              }
+
+            </div>
+
+          `;
+
+
+
+          if(
+            current ===
+            "noncompliant"
+          ) {
+
+
+            const photos =
+
+              audit.photos[key]
+
+              || [];
+
+
+            const corrected =
+
+              audit.corrected[key]
+
+              || "";
+
+
+            html += `
+
+            <div
+              class="finding"
+            >
+
+
+              <label>
+
+                Finding Comment
+
+                <span
+                  class="required"
+                >
+                  Required
+                </span>
+
+              </label>
+
+
+              <button
+
+                id="
+                  dictate-comment-${key}
+                "
+
+                type="button"
+
+                class="
+                  dictateButton
+                "
+
+                onclick="
+                  startDictation(
+                    '${key}',
+                    'comment'
+                  )
+                "
+
+              >
+
+                🎤 Dictate Comment
+
+              </button>
+
+
+              <textarea
+
+                id="
+                  comment-${key}
+                "
+
+                rows="3"
+
+                placeholder="
+                  Type comment or tap Dictate Comment above...
+                "
+
+                oninput="
+                  setComment(
+                    '${key}',
+                    this.value
+                  )
+                "
+
+              >${audit.comments[key] || ""}</textarea>
+
+
+              <div
+                class="voiceHelp"
+              >
+
+                Speak normally.
+                The dictated words will
+                appear in the box above.
+
+              </div>
+
+
+
+              <label>
+
+                Photos
+
+                <span
+                  style="
+                    font-weight:400;
+                    color:#6c757d;
+                  "
+                >
+
+                  Optional —
+                  multiple allowed
+
+                </span>
+
+              </label>
+
+
+              <input
+
+                type="file"
+
+                accept="image/*"
+
+                capture="environment"
+
+                multiple
+
+                onchange="
+                  addPhotos(
+                    '${key}',
+                    this
+                  )
+                "
+
+              >
+
+
+              <div
+                class="photos"
+              >
+
+                ${
+                  photos
+                  .map(
+                    photo =>
+                    `<img src="${photo}">`
+                  )
+                  .join("")
+                }
+
+              </div>
+
+
+
+              <label>
+
+                Corrective Action
+
+                <span
+                  style="
+                    font-weight:400;
+                    color:#6c757d;
+                  "
+                >
+
+                  Optional
+
+                </span>
+
+              </label>
+
+
+              <button
+
+                id="
+                  dictate-corrective-${key}
+                "
+
+                type="button"
+
+                class="
+                  dictateButton
+                "
+
+                onclick="
+                  startDictation(
+                    '${key}',
+                    'corrective'
+                  )
+                "
+
+              >
+
+                🎤 Dictate Corrective Action
+
+              </button>
+
+
+              <textarea
+
+                id="
+                  corrective-${key}
+                "
+
+                rows="2"
+
+                placeholder="
+                  Optional corrective action...
+                "
+
+                oninput="
+                  setCorrective(
+                    '${key}',
+                    this.value
+                  )
+                "
+
+              >${audit.corrective[key] || ""}</textarea>
+
+
+
+              <label>
+
+                Corrected On Site?
+
+              </label>
+
+
+              <div
+                class="
+                  correctedButtons
+                "
+              >
+
+
+                <button
+
+                  class="
+                    correctedButton
+                    yes
+                    ${
+                      corrected === "yes"
+                      ? "active"
+                      : ""
+                    }
+                  "
+
+                  onclick="
+                    setCorrected(
+                      '${key}',
+                      'yes'
+                    )
+                  "
+
+                >
+
+                  ✓ Yes
+
+                </button>
+
+
+
+                <button
+
+                  class="
+                    correctedButton
+                    no
+                    ${
+                      corrected === "no"
+                      ? "active"
+                      : ""
+                    }
+                  "
+
+                  onclick="
+                    setCorrected(
+                      '${key}',
+                      'no'
+                    )
+                  "
+
+                >
+
+                  ✕ No
+
+                </button>
+
+
+              </div>
+
+
+            </div>
+
+            `;
+
+          }
+
+
+          html +=
+            "</div>";
+
+        }
+      );
+
+
+      html +=
+        "</div>";
+
+    }
+  );
+
+
+
+  document
+  .getElementById(
+    "checklist"
+  )
+  .innerHTML =
+    html;
+
+
+
+  const answered =
+
+    Object.keys(
+      audit.answers
+    )
+    .length;
+
+
+
+  const percent =
+
+    Math.round(
+
+      answered
+
+      /
+
+      total
+
+      *
+
+      100
+
+    );
+
+
+
+  document
+  .getElementById(
+    "progressCount"
+  )
+  .innerText =
+
+    answered
+
+    +
+
+    " of "
+
+    +
+
+    total
+
+    +
+
+    " reviewed";
+
+
+
+  document
+  .getElementById(
+    "progressPercent"
+  )
+  .innerText =
+
+    percent
+
+    +
+
+    "%";
+
+
+
+  document
+  .getElementById(
+    "progressBar"
+  )
+  .style
+  .width =
+
+    percent
+
+    +
+
+    "%";
+
+
+
+  if(anchor) {
+
+    setTimeout(
+      () => {
+
+        document
+        .getElementById(
+          anchor
+        )
+        ?.scrollIntoView(
+          {
+            block:"center"
+          }
+        );
+
+      },
+
+      50
+    );
+
+  }
+
+}
+
+
+
+/* --------------------------------
+   FINAL REVIEW
+-------------------------------- */
+
+function finalReview() {
+
+  const total =
+
+    questions
+    .reduce(
+
+      (sum,q) =>
+
+      sum
+
+      +
+
+      q.checks.length,
+
+      0
+
+    );
+
+
+  const answered =
+
+    Object.keys(
+      audit.answers
+    )
+    .length;
+
+
+  if(
+    answered <
+    total
+  ) {
+
+    alert(
+
+      (total - answered)
+
+      +
+
+      " requirement(s) still need an answer."
+
+    );
+
+    return;
+
+  }
+
+
+
+  for(
+    const key
+    in
+    audit.answers
+  ) {
+
+
+    if(
+
+      audit.answers[key]
+      ===
+      "noncompliant"
+
+      &&
+
+      !audit
+      .comments[key]
+      ?.trim()
+
+    ) {
+
+      alert(
+
+        "Every Non-Compliant finding requires a comment."
+
+      );
 
       return;
 
@@ -839,115 +2195,343 @@ function finalReview() {
 
   }
 
+
+
   hideAll();
 
+
   document
-  .getElementById("summaryView")
-  .classList.remove("hidden");
+  .getElementById(
+    "summaryView"
+  )
+  .classList
+  .remove(
+    "hidden"
+  );
 
-  document.getElementById("summaryFacility")
-  .innerText=audit.facility;
 
-  document.getElementById("summaryDate")
-  .innerText=audit.date;
+  document
+  .getElementById(
+    "summaryFacility"
+  )
+  .innerText =
 
-  const values=Object.values(audit.answers);
+    audit.facility;
 
-  const compliant=
-    values.filter(v=>v==="compliant").length;
 
-  const nc=
-    values.filter(v=>v==="noncompliant").length;
+  document
+  .getElementById(
+    "summaryDate"
+  )
+  .innerText =
 
-  const na=
-    values.filter(v=>v==="na").length;
+    audit.date;
 
-  const nr=
-    values.filter(v=>v==="nr").length;
 
-  const applicable=compliant+nc;
 
-  const score=
+  const values =
+
+    Object.values(
+      audit.answers
+    );
+
+
+  const compliant =
+
+    values
+    .filter(
+      v =>
+      v ===
+      "compliant"
+    )
+    .length;
+
+
+  const nc =
+
+    values
+    .filter(
+      v =>
+      v ===
+      "noncompliant"
+    )
+    .length;
+
+
+  const na =
+
+    values
+    .filter(
+      v =>
+      v ===
+      "na"
+    )
+    .length;
+
+
+  const nr =
+
+    values
+    .filter(
+      v =>
+      v ===
+      "nr"
+    )
+    .length;
+
+
+  const applicable =
+
+    compliant
+
+    +
+
+    nc;
+
+
+  const score =
+
     applicable
-    ? Math.round(compliant/applicable*100)
-    : 0;
 
-  document.getElementById("score").innerText=score;
-  document.getElementById("compliantCount").innerText=compliant;
-  document.getElementById("ncCount").innerText=nc;
-  document.getElementById("naCount").innerText=na;
-  document.getElementById("nrCount").innerText=nr;
+    ?
+
+    Math.round(
+
+      compliant
+
+      /
+
+      applicable
+
+      *
+
+      100
+
+    )
+
+    :
+
+    0;
+
+
+
+  document
+  .getElementById(
+    "score"
+  )
+  .innerText =
+    score;
+
+
+  document
+  .getElementById(
+    "compliantCount"
+  )
+  .innerText =
+    compliant;
+
+
+  document
+  .getElementById(
+    "ncCount"
+  )
+  .innerText =
+    nc;
+
+
+  document
+  .getElementById(
+    "naCount"
+  )
+  .innerText =
+    na;
+
+
+  document
+  .getElementById(
+    "nrCount"
+  )
+  .innerText =
+    nr;
 
 }
 
+
+
+/* --------------------------------
+   COMPLETE AUDIT
+-------------------------------- */
+
 function completeAudit() {
 
-  const completed=
-    JSON.parse(localStorage.getItem("foodAuditCompleted"))
+
+  const completed =
+
+    JSON.parse(
+
+      localStorage
+      .getItem(
+        "foodAuditCompleted"
+      )
+
+    )
+
     || [];
 
-  completed.unshift({
-    ...audit,
-    completed:new Date().toISOString()
-  });
 
-  localStorage.setItem(
-    "foodAuditCompleted",
-    JSON.stringify(completed)
+  completed
+  .unshift(
+    {
+
+      ...audit,
+
+      completed:
+        new Date()
+        .toISOString()
+
+    }
   );
 
-  localStorage.removeItem("foodAuditActive");
 
-  audit=null;
+  localStorage
+  .setItem(
 
-  alert("Audit completed.");
+    "foodAuditCompleted",
+
+    JSON.stringify(
+      completed
+    )
+
+  );
+
+
+  localStorage
+  .removeItem(
+    "foodAuditActive"
+  );
+
+
+  audit =
+    null;
+
+
+  alert(
+    "Audit completed."
+  );
+
 
   showCompleted();
 
 }
 
+
+
+/* --------------------------------
+   COMPLETED AUDITS
+-------------------------------- */
+
 function showCompleted() {
+
 
   hideAll();
 
-  document
-  .getElementById("completedView")
-  .classList.remove("hidden");
 
-  const completed=
-    JSON.parse(localStorage.getItem("foodAuditCompleted"))
+  document
+  .getElementById(
+    "completedView"
+  )
+  .classList
+  .remove(
+    "hidden"
+  );
+
+
+  const completed =
+
+    JSON.parse(
+
+      localStorage
+      .getItem(
+        "foodAuditCompleted"
+      )
+
+    )
+
     || [];
 
-  let html="";
 
-  completed.forEach(a=>{
+  let html = "";
 
-    html+=`
 
-    <div class="card">
+  completed
+  .forEach(
+    a => {
 
-      <b>${a.facility}</b>
 
-      <div class="subtitle">
-        ${a.date} • ${a.auditor}
+      html += `
+
+      <div
+        class="card"
+      >
+
+        <b>
+
+          ${a.facility}
+
+        </b>
+
+
+        <div
+          class="subtitle"
+        >
+
+          ${a.date}
+
+          •
+
+          ${a.auditor}
+
+        </div>
+
       </div>
 
-    </div>`;
+      `;
 
-  });
+    }
+  );
+
 
   if(!html) {
 
-    html=`
-    <div class="notice">
-    No completed audits yet.
-    </div>`;
+    html = `
+
+    <div
+      class="notice"
+    >
+
+      No completed audits yet.
+
+    </div>
+
+    `;
 
   }
 
-  document.getElementById("completedList").innerHTML=html;
+
+  document
+  .getElementById(
+    "completedList"
+  )
+  .innerHTML =
+    html;
 
 }
+
+
+
+/* --------------------------------
+   START APP
+-------------------------------- */
 
 showHome();
 
